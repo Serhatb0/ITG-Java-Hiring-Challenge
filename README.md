@@ -1,1 +1,0 @@
-# ITG-Java-Hiring-Challenge
