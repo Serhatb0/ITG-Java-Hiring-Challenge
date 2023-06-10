@@ -1,0 +1,55 @@
+package com.biricik.automotive.model;
+
+
+import java.util.List;
+import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Table(name = "customers")
+@Entity
+@Data
+@AllArgsConstructor
+@PrimaryKeyJoinColumn(name="id")
+@NoArgsConstructor
+public class Customer extends  User{
+
+
+   
+	@Column(name="first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer")
+    private List<Order> orders;
+    
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "customer")
+	private ShoppingCart shoppingCart;
+
+    public Customer(String firstName, String lastName, String username, String password, String email) {
+		super(username,password,email);
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+    
+    
+    
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.getId());
+    }
+
+}

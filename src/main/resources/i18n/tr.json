@@ -1,0 +1,13 @@
+{
+    "errors": {
+      "0001": "kuponun süresi doldu",
+      "0002":"Kupon Geçerli Değil"
+     
+      
+    },
+    "success": {
+      "0001": "kupon Başarıyla uygulandı"
+  
+    
+    }
+  }

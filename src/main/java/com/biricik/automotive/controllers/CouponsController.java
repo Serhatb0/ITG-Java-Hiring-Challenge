@@ -1,0 +1,54 @@
+package com.biricik.automotive.controllers;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biricik.automotive.business.abstracts.CouponService;
+import com.biricik.automotive.business.requests.couponRequest.CreateCouponRequest;
+import com.biricik.automotive.business.requests.couponRequest.UpdateCouponRequest;
+import com.biricik.automotive.business.responses.PaginatedGenericResponse;
+import com.biricik.automotive.business.responses.couponResponses.CreateCouponResponse;
+import com.biricik.automotive.business.responses.couponResponses.GetAllCouponResponse;
+import com.biricik.automotive.business.responses.couponResponses.UpdateCouponResponse;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/v1/coupons")
+public class CouponsController {
+
+	private final CouponService couponService;
+
+	public CouponsController(CouponService couponService) {
+		this.couponService = couponService;
+	}
+
+	@GetMapping
+	public PaginatedGenericResponse<GetAllCouponResponse> getAllCoupon(
+			@RequestParam(defaultValue = "20") int size,
+			@RequestParam(defaultValue = "0") int page) {
+
+		return this.couponService.getAllCoupon(size,page);
+
+	}
+
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public CreateCouponResponse addCoupon(@Valid @RequestBody CreateCouponRequest createCouponRequest) {
+		return this.couponService.addCoupon(createCouponRequest);
+	}
+
+	@PutMapping
+	public UpdateCouponResponse updateCoupon(@Valid @RequestBody UpdateCouponRequest updateCouponRequest) {
+		return this.couponService.updateCoupon(updateCouponRequest);
+	}
+
+}
+

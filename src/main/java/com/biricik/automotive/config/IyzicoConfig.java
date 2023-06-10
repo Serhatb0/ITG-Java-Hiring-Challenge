@@ -1,0 +1,25 @@
+package com.biricik.automotive.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.iyzipay.Options;
+
+@Configuration
+public class IyzicoConfig {
+
+	private final AppProperties appProperties;
+
+	public IyzicoConfig(AppProperties appProperties) {
+		this.appProperties = appProperties;
+	}
+
+	@Bean
+	public Options options() {
+		Options options = new Options();
+		options.setApiKey(appProperties.getIyzico().getApiKey());
+		options.setSecretKey(appProperties.getIyzico().getSecretKey());
+		options.setBaseUrl(appProperties.getIyzico().getBaseUrl());
+		return options;
+	}
+}

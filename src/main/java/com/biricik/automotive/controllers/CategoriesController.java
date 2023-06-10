@@ -1,0 +1,44 @@
+package com.biricik.automotive.controllers;
+
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biricik.automotive.business.abstracts.CategoryService;
+import com.biricik.automotive.business.requests.categoryRequest.CreateCategoryRequest;
+import com.biricik.automotive.business.responses.categoryResponses.CreateCategoryResponse;
+import com.biricik.automotive.business.responses.categoryResponses.GetAllCategoryResponse;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/v1")
+public class CategoriesController {
+
+	private final CategoryService categoryService;
+
+	public CategoriesController(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
+	
+	
+	@GetMapping("/categories")
+	public List<GetAllCategoryResponse> getAllCategories(){
+		return categoryService.getAll();
+	
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("categories")
+	public CreateCategoryResponse addCategory(@RequestBody @Valid CreateCategoryRequest createCategoryRequest)  {
+		return this.categoryService.addCategory(createCategoryRequest);
+	}
+	
+	
+	
+}
