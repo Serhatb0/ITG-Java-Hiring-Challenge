@@ -1,0 +1,10 @@
+package com.biricik.ecommerce.business.requests.orderRequest;
+
+import lombok.Data;
+
+@Data
+public class CreateOrderRequest {
+	
+	private int shoppingCartId;
+
+}

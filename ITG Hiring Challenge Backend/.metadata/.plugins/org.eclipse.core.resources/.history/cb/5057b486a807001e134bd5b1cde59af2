@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"name": "Samsung",
+		"categories": [
+			{
+				"id": 1,
+				"name": "Motor Parçaları"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Nike",
+		"categories": [
+			{
+				"id": 2,
+				"name": "Şasi Parçaları"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "Apple",
+		"categories": [
+			{
+				"id": 3,
+				"name": "Elektrik Parçaları"
+			}
+		]
+	}
+]

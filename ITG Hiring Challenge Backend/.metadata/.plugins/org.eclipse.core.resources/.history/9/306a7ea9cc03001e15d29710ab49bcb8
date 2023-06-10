@@ -1,0 +1,5 @@
+package com.biricik.ecommerce.business.rules;
+
+public class ProductRules {
+
+}

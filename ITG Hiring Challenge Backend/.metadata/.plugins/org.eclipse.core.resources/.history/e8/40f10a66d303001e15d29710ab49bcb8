@@ -1,0 +1,5 @@
+package com.biricik.automotive.annotation;
+
+public class LogExecutionTime {
+
+}

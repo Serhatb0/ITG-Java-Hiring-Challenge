@@ -1,0 +1,5 @@
+package com.biricik.automotive.business.concretes;
+
+public class CategoryManager {
+
+}

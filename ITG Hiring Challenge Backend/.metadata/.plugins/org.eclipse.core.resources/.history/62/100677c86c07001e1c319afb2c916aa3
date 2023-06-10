@@ -1,0 +1,19 @@
+package com.biricik.automotive.business.requests.couponRequest;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class UpdateCouponRequest {
+
+	private int id;
+
+	private BigDecimal discount;
+
+	private LocalDate expiresAt;
+
+}

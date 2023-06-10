@@ -1,0 +1,141 @@
+package com.biricik.ecommerce.business.concretes;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+
+import com.biricik.ecommerce.business.abstracts.CouponService;
+import com.biricik.ecommerce.business.abstracts.OrderItemService;
+import com.biricik.ecommerce.business.abstracts.OrderService;
+import com.biricik.ecommerce.business.abstracts.ShoppingCartService;
+import com.biricik.ecommerce.business.mappers.OrderMapper;
+import com.biricik.ecommerce.business.mappers.ProductMapper;
+import com.biricik.ecommerce.business.requests.orderRequest.CreateOrderRequest;
+import com.biricik.ecommerce.business.responses.orderResponses.FindByCustomerIdOrderResponse;
+import com.biricik.ecommerce.business.responses.orderResponses.FindByIdOrderResponse;
+import com.biricik.ecommerce.business.responses.productResponses.GetAllProductResponse;
+import com.biricik.ecommerce.model.Coupon;
+import com.biricik.ecommerce.model.Customer;
+import com.biricik.ecommerce.model.Image;
+import com.biricik.ecommerce.model.Order;
+import com.biricik.ecommerce.model.OrderItem;
+import com.biricik.ecommerce.model.OrderStatus;
+import com.biricik.ecommerce.model.Product;
+import com.biricik.ecommerce.model.ShoppingCart;
+import com.biricik.ecommerce.model.ShoppingCartItem;
+import com.biricik.ecommerce.repository.OrderRepository;
+import com.biricik.ecommerce.util.MethodUtils;
+
+@Service
+public class OrderManager implements OrderService {
+
+	private final OrderRepository orderRepository;
+	private final ShoppingCartService shoppingCartService;
+	private final OrderMapper orderMapper;
+	private final OrderItemService orderItemService;
+	private final CouponService couponService;
+	private final ProductMapper productMapper;
+
+	@Lazy
+	public OrderManager(OrderRepository orderRepository, ShoppingCartService shoppingCartService,
+			CouponService couponService, OrderItemService orderItemService, OrderMapper orderMapper,
+			ProductMapper productMapper) {
+		this.orderRepository = orderRepository;
+		this.shoppingCartService = shoppingCartService;
+		this.orderMapper = orderMapper;
+		this.orderItemService = orderItemService;
+		this.couponService = couponService;
+		this.productMapper = productMapper;
+
+	}
+
+	@Override
+	public void createOrder(CreateOrderRequest createOrderRequest, String discountCode) {
+
+		ShoppingCart shoppingCart = shoppingCartService.findById(createOrderRequest.getShoppingCartId());
+		List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+
+		List<OrderItem> orderItems = new ArrayList<>();
+		Customer customer = shoppingCart.getCustomer();
+
+		Order order = Order.builder().customer(customer).orderItems(orderItems).orderStatus(OrderStatus.PREPARING)
+				.totalAmount(shoppingCart.getTotalAmount()).orderDate(MethodUtils.getCurrentTimeStamp()).build();
+
+		if (discountCode != null) {
+			order.setCoupon(couponService.findByCode(discountCode));
+		}
+		orderRepository.save(order);
+		for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
+			orderItems.add(OrderItem.builder().product(shoppingCartItem.getProduct()).order(order)
+					.quantity(shoppingCartItem.getQuantity()).price(shoppingCartItem.getProduct().getPrice()
+							.multiply(BigDecimal.valueOf(shoppingCartItem.getQuantity())))
+					.build());
+
+		}
+
+		orderItemService.addOrderItem(orderItems);
+		orderRepository.save(order);
+
+	}
+
+	@Override
+	public List<FindByCustomerIdOrderResponse> findByCustomerId(int customerId) {
+
+		List<Order> orders = this.orderRepository.findByCustomerId(customerId);
+
+		List<FindByCustomerIdOrderResponse> responses = orderMapper.orderToFindByCustomerIdOrderResponses(orders);
+
+		responses.stream().forEach(response -> {
+			
+			Order order = orders.stream().filter(o -> o.getId() == response.getId()).findFirst().orElse(null);
+		
+			
+			 if (order != null && order.getCoupon() != null) {
+		            BigDecimal discountTotalAmount = response.getTotalAmount()
+		                    .subtract(
+		                            response.getTotalAmount()
+		                                    .multiply(order.getCoupon().getDiscount())
+		                                    .divide(BigDecimal.valueOf(100))
+		                    );
+
+		            response.setDiscountTotalAmount(discountTotalAmount);
+		        }else {
+		        	  response.setDiscountTotalAmount(response.getTotalAmount());
+		        }
+	
+					
+			
+
+		});
+
+		return responses;
+
+	}
+
+	@Override
+	public FindByIdOrderResponse findById(int id) {
+
+		Order order = orderRepository.findById(id).get();
+
+		List<Product> products = order.getOrderItems().stream().map(item -> item.getProduct())
+				.collect(Collectors.toList());
+
+		List<GetAllProductResponse> getAllProductResponse = productMapper.productToGetAllProductResponses(products);
+
+		getAllProductResponse.stream().peek(response -> {
+			List<String> urls = products.stream().filter(product -> product.getId() == response.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+			response.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		FindByIdOrderResponse responses = orderMapper.orderToFindByIdOrderResponse(order, getAllProductResponse);
+
+		return responses;
+
+	}
+
+}

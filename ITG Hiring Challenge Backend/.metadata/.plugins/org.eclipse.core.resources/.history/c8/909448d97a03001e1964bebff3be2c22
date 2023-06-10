@@ -1,0 +1,11 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.responses.addressResponses.GetAllCountryResponse;
+
+public interface CountryService {
+
+	List<GetAllCountryResponse> getAll();
+
+}

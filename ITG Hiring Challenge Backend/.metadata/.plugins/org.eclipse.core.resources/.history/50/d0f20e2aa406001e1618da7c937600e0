@@ -1,0 +1,34 @@
+package com.biricik.automotive.business.concretes;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CreditCardService;
+import com.biricik.automotive.business.requests.creditCardRequest.CreateCreditCartRequest;
+import com.biricik.automotive.business.responses.creditCardResponse.CreateCreditCartResponse;
+import com.biricik.automotive.repository.CreditCardRepository;
+
+@Service
+public class CreditCardManager implements CreditCardService {
+	
+	
+	private final CreditCardRepository creditCardRepository;
+
+	public CreditCardManager(CreditCardRepository creditCardRepository) {;
+		this.creditCardRepository = creditCardRepository;
+	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public CreateCreditCartResponse createCreditCart(CreateCreditCartRequest createCreditCartRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

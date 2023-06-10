@@ -1,0 +1,92 @@
+[
+	{
+		"id": 1,
+		"name": "Bosch Fren Balatası",
+		"description": "Yüksek performanslı Bosch markalı fren balatası, güvenli ve etkili frenleme sağlar.",
+		"price": 799.99,
+		"quantity": 20,
+		"category": {
+			"id": 1,
+			"name": "Motor Parçaları"
+		},
+		"brand": {
+			"id": 1,
+			"name": "Bosch"
+		}
+	},
+	{
+		"id": 2,
+		"name": "Bosch Yakıt Pompası",
+		"description": "Yüksek performanslı Bosch markalı yakıt pompası, yakıt verimliliğini artırır.",
+		"price": 150.00,
+		"quantity": 30,
+		"category": {
+			"id": 1,
+			"name": "Motor Parçaları"
+		},
+		"brand": {
+			"id": 1,
+			"name": "Bosch"
+		}
+	},
+	{
+		"id": 3,
+		"name": "Bosch Oksijen Sensörü",
+		"description": "Yüksek hassasiyete sahip Bosch markalı oksijen sensörü, motor performansını optimize eder.",
+		"price": 1299.99,
+		"quantity": 15,
+		"category": {
+			"id": 1,
+			"name": "Motor Parçaları"
+		},
+		"brand": {
+			"id": 1,
+			"name": "Bosch"
+		}
+	},
+	{
+		"id": 4,
+		"name": "Apple MacBook Air 2",
+		"description": "13-inch, 512GB SSD, Space Gray",
+		"price": 1800.99,
+		"quantity": 15,
+		"category": {
+			"id": 2,
+			"name": "Şasi Parçaları"
+		},
+		"brand": {
+			"id": 2,
+			"name": "Continental"
+		}
+	},
+	{
+		"id": 5,
+		"name": "Iphone 14 pro",
+		"description": "13-inch, 512GB SSD, Space Gray",
+		"price": 2000,
+		"quantity": 8,
+		"category": {
+			"id": 3,
+			"name": "Elektrik Parçaları"
+		},
+		"brand": {
+			"id": 3,
+			"name": "Delphi"
+		}
+	},
+	{
+		"id": 6,
+		"name": "Samsung Galaxy S3 mini",
+		"description": "6.2 inch, 128GB, Phantom Gray",
+		"price": 300,
+		"quantity": 5,
+		"category": {
+			"id": 3,
+			"name": "Elektrik Parçaları"
+		},
+		"brand": {
+			"id": 3,
+			"name": "Delphi"
+		}
+	}
+]

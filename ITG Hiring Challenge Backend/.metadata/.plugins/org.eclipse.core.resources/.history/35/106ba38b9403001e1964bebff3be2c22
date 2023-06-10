@@ -1,0 +1,75 @@
+package com.biricik.automotive.business.concretes;
+
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CouponService;
+import com.biricik.automotive.business.requests.PaginatedRequest;
+import com.biricik.automotive.business.requests.couponRequest.CreateCouponRequest;
+import com.biricik.automotive.business.requests.couponRequest.UpdateCouponRequest;
+import com.biricik.automotive.business.responses.PaginatedGenericResponse;
+import com.biricik.automotive.business.responses.couponResponses.CreateCouponResponse;
+import com.biricik.automotive.business.responses.couponResponses.GetAllCouponResponse;
+import com.biricik.automotive.business.responses.couponResponses.UpdateCouponResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Coupon;
+import com.biricik.automotive.repository.CouponRepository;
+
+@Service
+public class CouponManager implements CouponService {
+
+	private final CouponRepository couponRepository;
+	private final ModelMapperService modelMapperService;
+
+	public CouponManager(CouponRepository couponRepository, ModelMapperService modelMapperService) {
+		this.couponRepository = couponRepository;
+		this.modelMapperService = modelMapperService;
+
+	}
+
+	@Override
+	public CreateCouponResponse addCoupon(CreateCouponRequest createCouponRequest) {
+		Coupon coupon =  modelMapperService.forRequest().map(createCouponRequest, Coupon.class);;
+		coupon.setCode(UUID.randomUUID().toString());
+		this.couponRepository.save(coupon);
+
+		return modelMapperService.forResponse().map(coupon, CreateCouponResponse.class);;
+
+	}
+
+	@Override
+	public UpdateCouponResponse updateCoupon(UpdateCouponRequest updateCouponRequest) {
+		Coupon coupon = this.couponMapper.updateCouponRequestToCoupon(updateCouponRequest);
+		coupon.setCode(this.couponRepository.findById(updateCouponRequest.getId()).get().getCode());
+		this.couponRepository.save(coupon);
+
+		return this.couponMapper.couponToUpdateCouponResponse(coupon);
+
+	}
+
+	@Override
+	public PaginatedGenericResponse<GetAllCouponResponse> getAllCoupon(PaginatedRequest paginatedRequest) {
+
+		Pageable pageable = PageRequest.of(paginatedRequest.getPage(), paginatedRequest.getSize());
+
+		Page<Coupon> coupon = this.couponRepository.findAll(pageable);
+
+		List<GetAllCouponResponse> getAllCouponResponses = this.couponMapper.couponToGetAllCouponResponse(coupon);
+
+		return new PaginatedGenericResponse<GetAllCouponResponse>(getAllCouponResponses, coupon.getNumber(),
+				coupon.getSize(), coupon.getTotalElements(), coupon.getTotalPages());
+
+	}
+
+	@Override
+	public Coupon findByCode(String code) {
+		return this.couponRepository.findByCode(code).orElse(new Coupon());
+	}
+
+}

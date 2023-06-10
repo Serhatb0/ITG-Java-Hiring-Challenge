@@ -1,0 +1,57 @@
+package com.biricik.automotive.controllers;
+
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biricik.automotive.business.abstracts.AddressService;
+import com.biricik.automotive.business.requests.addressRequest.CreateAddressRequest;
+import com.biricik.automotive.business.responses.addressResponses.CreateAddressResponse;
+import com.biricik.automotive.business.responses.addressResponses.FindByCustomerIdAddressResponse;
+import com.biricik.automotive.business.responses.addressResponses.FindByIdAddressResponse;
+
+@RestController
+@RequestMapping("/api/v1")
+public class AddressController {
+
+	private final AddressService addressService;
+
+	public AddressController(AddressService addressService) {
+		this.addressService = addressService;
+	}
+
+	
+	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/address")
+	public CreateAddressResponse addAddress(@RequestBody CreateAddressRequest createAddressRequest) {
+
+		return addressService.addAddress(createAddressRequest);
+
+	}
+
+	@PreAuthorize("hasRole('USER')")
+	@DeleteMapping("/address")
+	public void deleteAddress(@RequestParam int id) {
+		addressService.deleteAddress(id);
+	}
+
+	
+	@GetMapping("/address/findById")
+	public FindByIdAddressResponse findById(@RequestParam int id) {
+		return addressService.findById(id);
+	}
+
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/address/findByCustomerId")
+	public List<FindByCustomerIdAddressResponse> findByCustomerId(@RequestParam int customerId) {
+		return addressService.findByCustomerId(customerId);
+	}
+
+}

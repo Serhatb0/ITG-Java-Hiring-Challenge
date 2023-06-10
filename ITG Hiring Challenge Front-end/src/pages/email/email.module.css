@@ -1,0 +1,33 @@
+.container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 50px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.h1 {
+  font-size: 28px;
+  margin: 20px 0;
+}
+.p {
+  margin: 20px 0;
+}
+.a {
+  display: inline-block;
+  background-color: #008cba;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+.warning {
+  margin: 20px 0;
+  font-size: 12px;
+}

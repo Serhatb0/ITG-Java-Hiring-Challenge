@@ -1,0 +1,39 @@
+package com.biricik.automotive.business.concretes;
+
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CountryService;
+import com.biricik.automotive.business.responses.addressResponses.GetAllCountryResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Country;
+import com.biricik.automotive.repository.CountryRepository;
+import com.biricik.ecommerce.business.mappers.AddressMapper;
+
+
+@Service
+public class CountryManager implements CountryService {
+
+	private final CountryRepository countryRepository;
+	private final ModelMapperService modelMapperService;
+
+	public CountryManager(CountryRepository countryRepository) {
+
+		this.countryRepository = countryRepository;
+	
+	}
+
+	@Override
+	public List<GetAllCountryResponse> getAll() {
+
+		List<Country> countries = countryRepository.findAll();
+
+		List<GetAllCountryResponse> response = addressMapper.countryToGetAllCountryResponse(countries);
+
+		return response;
+
+	}
+
+}

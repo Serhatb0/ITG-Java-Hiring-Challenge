@@ -1,0 +1,5 @@
+package com.biricik.automotive.validator;
+
+public @interface UniqueUserName {
+
+}

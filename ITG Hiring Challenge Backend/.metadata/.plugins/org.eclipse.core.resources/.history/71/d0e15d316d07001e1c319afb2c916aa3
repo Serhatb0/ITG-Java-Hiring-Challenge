@@ -1,0 +1,25 @@
+package com.biricik.automotive.business.requests.paymentRequest;
+
+import java.math.BigDecimal;
+
+import com.biricik.automotive.business.requests.addressRequest.CreateAddressRequest;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
+@Data
+public class PaymentRequest {
+
+	@NotBlank
+	private int customerId;
+
+	@NotBlank
+	private int addressId;
+
+	private String discountCode;
+
+	@NotBlank
+	private BigDecimal totalAmount;
+	private int creditCartId;
+
+}

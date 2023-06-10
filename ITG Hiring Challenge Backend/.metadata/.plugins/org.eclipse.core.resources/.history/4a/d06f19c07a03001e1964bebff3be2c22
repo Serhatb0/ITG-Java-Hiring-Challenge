@@ -1,0 +1,11 @@
+package com.biricik.automotive.business.abstracts;
+import java.io.UnsupportedEncodingException;
+
+import jakarta.mail.MessagingException;
+
+public interface EmailService {
+
+	public void sendEmail(User user) throws UnsupportedEncodingException, MessagingException;
+
+	public String confirmEmail(String confirmationToken);
+}

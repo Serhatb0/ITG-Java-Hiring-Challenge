@@ -1,0 +1,14 @@
+package com.biricik.automotive.business.requests.couponRequest;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CouponApplyRequest {
+	
+	private int customerId;
+	
+	private String discountCode;
+	
+}

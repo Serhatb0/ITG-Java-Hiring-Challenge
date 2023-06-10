@@ -1,0 +1,12 @@
+package com.biricik.automotive.business.requests.orderRequest;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class CreateOrderRequest {
+	
+	private int shoppingCartId;
+
+}

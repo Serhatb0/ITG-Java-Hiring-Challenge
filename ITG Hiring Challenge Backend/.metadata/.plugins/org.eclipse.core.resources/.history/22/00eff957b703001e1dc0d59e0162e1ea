@@ -1,0 +1,192 @@
+package com.biricik.automotive.business.concretes;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CouponService;
+import com.biricik.automotive.business.abstracts.CustomerService;
+import com.biricik.automotive.business.abstracts.ProductService;
+import com.biricik.automotive.business.abstracts.ShoppingCartItemService;
+import com.biricik.automotive.business.abstracts.ShoppingCartService;
+import com.biricik.automotive.business.requests.couponRequest.CouponApplyRequest;
+import com.biricik.automotive.business.requests.shoppingCartRequest.CreateShoppingCartRequest;
+import com.biricik.automotive.business.responses.couponResponses.CouponApplyResponse;
+import com.biricik.automotive.business.responses.shoppingCartResponses.CreateShoppingCartResponse;
+import com.biricik.automotive.business.responses.shoppingCartResponses.FindByCustomerIdShoppingCartResponse;
+import com.biricik.automotive.business.rules.CouponRules;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Coupon;
+import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.model.Product;
+import com.biricik.automotive.model.ShoppingCart;
+import com.biricik.automotive.model.ShoppingCartItem;
+import com.biricik.automotive.repository.ShoppingCartRepository;
+
+@Service
+public class ShoppingCartManager implements ShoppingCartService {
+
+	private final ShoppingCartRepository shoppingCartRepository;
+	private final ShoppingCartItemService shoppingCartItemService;
+	private final ProductService productService;
+	private final CustomerService customerService;
+	private final CouponService couponService;
+	private final CouponRules couponRules;
+	private final ModelMapperService modelMapperService;
+
+	public ShoppingCartManager(ShoppingCartRepository shoppingCartRepository,
+			ShoppingCartItemService shoppingCartItemService, ProductService productService,
+			CustomerService customerService, CouponService couponService, CouponRules couponRules,
+			ModelMapperService modelMapperService) {
+		this.shoppingCartRepository = shoppingCartRepository;
+		this.shoppingCartItemService = shoppingCartItemService;
+		this.productService = productService;
+		this.customerService = customerService;
+		this.couponService = couponService;
+		this.couponRules = couponRules;
+		this.modelMapperService = modelMapperService;
+
+	}
+
+	@Override
+	public CreateShoppingCartResponse addShoppingCart(CreateShoppingCartRequest createShoppingCartRequest) {
+
+		Product product = modelMapperService.forRequest()
+				.map(productService.findById(createShoppingCartRequest.getProductId()), Product.class);
+
+		Customer customer = this.customerService.findById(createShoppingCartRequest.getCustomerId());
+
+		List<ShoppingCartItem> shoppingCartItems = this.shoppingCartItemService
+				.findByCustomerId(createShoppingCartRequest.getCustomerId());
+
+		ShoppingCart shoppingCart = this.shoppingCartRepository
+				.findByCustomerId(createShoppingCartRequest.getCustomerId()).orElse(ShoppingCart.builder()
+						.customer(customer).totalAmount(BigDecimal.ZERO).shoppingCartItems(shoppingCartItems).build());
+
+		this.shoppingCartRepository.save(shoppingCart);
+
+		if (indexOfProduct(shoppingCartItems, product) == -1) {
+
+			ShoppingCartItem shoppingCartItem = ShoppingCartItem.builder().product(product).shoppingCart(shoppingCart)
+					.quantity(createShoppingCartRequest.getQuantity()).build();
+
+			shoppingCartItems.add(shoppingCartItem);
+			shoppingCartItemService.addShoppingCartItemService(shoppingCartItem);
+
+		} else {
+
+			ShoppingCartItem shoppingCartItem = shoppingCartItems.get(indexOfProduct(shoppingCartItems, product));
+			shoppingCartItem.setQuantity(shoppingCartItem.getQuantity() + createShoppingCartRequest.getQuantity());
+			shoppingCartItemService.addShoppingCartItemService(shoppingCartItem);
+		}
+
+		shoppingCart.setTotalAmount(calculateTotalAndDiscountedAmount(shoppingCart, null)[0]);
+		shoppingCart.setDiscountedTotalAmount(calculateTotalAndDiscountedAmount(shoppingCart, null)[1]);
+
+		this.shoppingCartRepository.save(shoppingCart);
+		return modelMapperService.forResponse().map(shoppingCart, CreateShoppingCartResponse.class);
+
+	}
+
+	public CouponApplyResponse applyCouponForShoppingCart(CouponApplyRequest couponApplyRequest) {
+
+		ShoppingCart shoppingCart = shoppingCartRepository.findByCustomerId(couponApplyRequest.getCustomerId()).get();
+
+		shoppingCart.setDiscountedTotalAmount(
+				calculateTotalAndDiscountedAmount(shoppingCart, couponApplyRequest.getDiscountCode())[1]);
+
+		shoppingCart.setTotalAmount(
+				calculateTotalAndDiscountedAmount(shoppingCart, couponApplyRequest.getDiscountCode())[0]);
+
+		return modelMapperService.forResponse().map(shoppingCart, CouponApplyResponse.class);
+	}
+
+	@Override
+	public FindByCustomerIdShoppingCartResponse findByCustomerId(int customerId) {
+
+		ShoppingCart shoppingCart = shoppingCartRepository.findByCustomerId(customerId).orElse(new ShoppingCart());
+
+		return shoppingCartMapper.shoppingCartItemToFindByCustomerIdShoppingCartResponse(shoppingCart);
+
+	}
+
+	@Override
+	public void updatedShoppingCart(int customerId, ShoppingCartItem shoppingCartItem) {
+
+		ShoppingCart shoppingCart = this.shoppingCartRepository.findByCustomerId(customerId).get();
+
+		shoppingCart.setTotalAmount(shoppingCart.getTotalAmount().subtract(
+				shoppingCartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(shoppingCartItem.getQuantity()))));
+		shoppingCart.setDiscountedTotalAmount(shoppingCart.getDiscountedTotalAmount().subtract(
+				shoppingCartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(shoppingCartItem.getQuantity()))));
+
+		this.shoppingCartRepository.save(shoppingCart);
+
+	}
+
+	@Override
+	public void updatedShoppingCart(ShoppingCart shoppingCart) {
+
+		shoppingCart.setTotalAmount(new BigDecimal(0));
+		shoppingCart.setDiscountedTotalAmount(new BigDecimal(0));
+
+		this.shoppingCartRepository.save(shoppingCart);
+
+	}
+
+	private int indexOfProduct(List<ShoppingCartItem> shoppingCartItems, Product product) {
+		for (int i = 0; i < shoppingCartItems.size(); i++) {
+			if (shoppingCartItems.get(i).getProduct().equals(product)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private BigDecimal[] calculateTotalAndDiscountedAmount(ShoppingCart shoppingCart, String discountCode) {
+		BigDecimal totalAmount = BigDecimal.ZERO;
+
+		BigDecimal discountedAmount = BigDecimal.ZERO;
+		for (ShoppingCartItem cartItem : shoppingCart.getShoppingCartItems()) {
+			totalAmount = totalAmount
+					.add(cartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+
+		}
+
+		if (discountCode != null) {
+			BigDecimal discountRate = findByDiscountRate(discountCode);
+			discountedAmount = totalAmount.subtract(totalAmount.multiply(discountRate).divide(BigDecimal.valueOf(100)));
+		} else {
+			discountedAmount = totalAmount;
+		}
+
+		return new BigDecimal[] { totalAmount, discountedAmount };
+
+	}
+
+	private BigDecimal findByDiscountRate(String code) {
+
+		BigDecimal discountRate;
+
+		Coupon coupon = this.couponService.findByCode(code);
+
+		couponRules.checkCouponDateExpiry(coupon);
+		couponRules.checkCouponValidity(code);
+
+		if (coupon.getDiscount() == null) {
+			discountRate = BigDecimal.ZERO;
+		} else {
+			discountRate = coupon.getDiscount();
+		}
+		return discountRate;
+
+	}
+
+	@Override
+	public ShoppingCart findById(int id) {
+
+		return shoppingCartRepository.findById(id).get();
+	}
+
+}

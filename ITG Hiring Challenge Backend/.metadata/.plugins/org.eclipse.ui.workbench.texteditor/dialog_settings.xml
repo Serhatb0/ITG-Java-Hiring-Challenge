@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value=""/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="discountCode"/>
+			<item value="senderName"/>
+			<item value="authorities"/>
+			<item value="%C{1.}"/>
+			<item value="%-M"/>
+			<item value="1"/>
+			<item value="classic"/>
+			<item value="package com.biricik.ecommerce.util;"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+</section>

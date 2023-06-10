@@ -1,0 +1,22 @@
+package com.biricik.automotive.business.requests.productRequest;
+
+
+
+import java.math.BigDecimal;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateProductRequest {
+
+	private String name; 
+	private String description;
+	private BigDecimal price;
+	private int quantity;
+	private int categoryId;
+	private int brandId;
+	
+	
+}

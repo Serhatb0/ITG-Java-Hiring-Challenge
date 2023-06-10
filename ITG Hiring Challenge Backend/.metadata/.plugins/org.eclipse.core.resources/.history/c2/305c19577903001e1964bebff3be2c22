@@ -1,0 +1,15 @@
+package com.biricik.automotive.business.responses;
+
+import java.util.List;
+
+public record PaginatedGenericResponse<T>(List<T> content,int pageNubmer,int pageSize,long totalElemnts,long totalPages) {
+	
+
+
+	public PaginatedGenericResponse<T> convet(List<T> content,int pageNubmer,int pageSize,long totalElemnts,long totalPages ){
+		
+		return new PaginatedGenericResponse<T>(content, pageNubmer, pageSize, totalElemnts, totalPages);
+		
+	}
+
+}

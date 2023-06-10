@@ -1,0 +1,115 @@
+package com.biricik.automotive.business.concretes;
+
+
+import java.io.UnsupportedEncodingException;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.EmailService;
+import com.biricik.automotive.business.requests.authRequest.SendEmailAdminRequest;
+import com.biricik.automotive.model.EmailConfirmationToken;
+import com.biricik.automotive.model.User;
+import com.biricik.automotive.repository.ConfirmationTokenRepository;
+import com.biricik.automotive.repository.UserRepository;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+
+@Service
+public class EmailManager implements EmailService {
+
+	private final JavaMailSender javaMailSender;
+	private final ConfirmationTokenRepository confirmationTokenRepository;
+	private final UserRepository userRepository;
+	
+	
+	@Value("${app.baseUrl}")
+	private  String baseUrl;
+	
+	
+	
+	
+	public EmailManager(JavaMailSender javaMailSender, ConfirmationTokenRepository confirmationTokenRepository,
+			UserRepository userRepository) {
+		this.javaMailSender = javaMailSender;
+		this.confirmationTokenRepository = confirmationTokenRepository; 
+		this.userRepository = userRepository;
+	}
+
+	@Override
+	public void sendEmail(User user) throws UnsupportedEncodingException, MessagingException {
+
+		String token = UUID.randomUUID().toString();
+		EmailConfirmationToken emailConfirmationToken = new EmailConfirmationToken(token, user);
+		confirmationTokenRepository.save(emailConfirmationToken);
+
+		String toAddress = user.getEmail();
+		String fromAddress = "gsgalatasaray086@gmail.com";
+		String senderName = "Biricik Ticaret";
+		String subject = "Please verify your registration"; 
+		String content = "Dear [[name]],<br>" + "Please click the link below to verify your registration:<br>"
+				+ "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>" + "Thank you,<br>" + "Biricik Ticaret.";
+
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		helper.setFrom(fromAddress, senderName);
+		helper.setTo(toAddress);
+		helper.setSubject(subject);
+
+		content = content.replace("[[name]]", user.getUsername());
+		String verifyURL = baseUrl+  "/api/v1/auth/confirm-account?token=" + emailConfirmationToken.getConfirmationToken();
+		content = content.replace("[[URL]]", verifyURL);
+		helper.setText(content, true);
+		
+		
+//		 SimpleMailMessage mailMessage = new SimpleMailMessage();
+//	        mailMessage.setTo(user.getEmail());
+//	        mailMessage.setSubject("Complete Registration!");
+//	        mailMessage.setText("To confirm your account, please click here : "
+//	                +"http://localhost:8080/confirm-account?token="+emailConfirmationToken.getConfirmationToken());
+//	       
+	
+		javaMailSender.send(message);
+	
+	}
+
+	@Override
+	public String confirmEmail(String confirmationToken) {
+		EmailConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken).get();
+
+		if (token != null) {
+			User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail()).get();
+			user.setEmailVerified(true);
+			userRepository.save(user);
+			return "Email verified successfully!";
+		}
+
+		return "Error: Couldn't verify email";
+
+	}
+
+	@Override
+	public void sendEmailForAdmin(SendEmailAdminRequest sendEmailAdminRequest) {
+	
+		  MimeMessage message = javaMailSender.createMimeMessage();
+	        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	    	try {
+				   helper.setTo("gsgalatasaray086@gmail.com");
+			        helper.setSubject(sendEmailAdminRequest.getName());
+			        helper.setText(sendEmailAdminRequest.getContent(), true);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	     
+	        
+	        javaMailSender.send(message);
+		
+	}
+
+}

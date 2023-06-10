@@ -1,0 +1,56 @@
+package com.biricik.automotive.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CityService;
+import com.biricik.automotive.business.responses.addressResponses.FindByCountryIdCityResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.City;
+import com.biricik.automotive.repository.CityRepository;
+
+@Service
+public class CityManager implements CityService {
+
+	private final CityRepository cityRepository;
+	private final ModelMapperService modelMapperService;
+
+
+	public CityManager(CityRepository cityRepository, ModelMapperService modelMapperService) {
+		this.cityRepository = cityRepository;
+		this.modelMapperService = modelMapperService;
+	}
+	
+	
+	List<GetAllProgrammingLanguagesResponse> response = pageProgrammingLanguage.stream()
+			.map(programmingLanguage -> modelMapperService.forResponse().map(programmingLanguage,
+					GetAllProgrammingLanguagesResponse.class))
+			.collect(Collectors.toList());
+	@Override
+	public List<FindByCountryIdCityResponse> findByCountryId(int countryId) {
+		
+		List<City> cities = cityRepository.findByCountryId(countryId);
+		
+		List<FindByCountryIdCityResponse> response =  cities.stream()
+				.map(city -> modelMapperService.forResponse()
+						.map(city, FindByCountryIdCityResponse.class)).collect(Collectors.toList());
+				
+		
+		return response;
+		
+		
+		
+		
+	}
+
+
+
+	@Override
+	public City findById(int cityId) {
+	
+		return cityRepository.findById(cityId).get();
+	}
+
+}

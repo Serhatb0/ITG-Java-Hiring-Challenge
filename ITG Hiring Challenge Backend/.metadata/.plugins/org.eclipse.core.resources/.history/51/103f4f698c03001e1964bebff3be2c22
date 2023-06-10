@@ -1,0 +1,55 @@
+package com.biricik.automotive.business.concretes;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CategoryService;
+import com.biricik.automotive.business.requests.categoryRequest.CreateCategoryRequest;
+import com.biricik.automotive.business.responses.categoryResponses.CreateCategoryResponse;
+import com.biricik.automotive.business.responses.categoryResponses.GetAllCategoryResponse;
+import com.biricik.automotive.business.responses.categoryResponses.GetByIdCategoryResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Category;
+import com.biricik.automotive.repository.CategoryRepository;
+
+@Service
+public class CategoryManager implements CategoryService {
+
+	public final CategoryRepository categoryRepository;
+	private final ModelMapperService modelMapperService;
+
+	public CategoryManager(CategoryRepository categoryRepository, ModelMapperService modelMapperService) {
+		this.categoryRepository = categoryRepository;
+		this.modelMapperService = modelMapperService;
+
+	}
+
+	@Override
+	public CreateCategoryResponse addCategory(CreateCategoryRequest createCategoryRequest) {
+
+		Category category = modelMapperService.forRequest().map(createCategoryRequest, Category.class);
+
+		return categoryMapper.categoryToCreateCategoryResponse(category);
+
+	}
+
+	@Override
+	public List<GetAllCategoryResponse> getAll() {
+
+		List<Category> categories = this.categoryRepository.findAll();
+
+		List<GetAllCategoryResponse> getAllCategoryResponses = categoryMapper
+				.categoryToGetAllCategoryResponse(categories);
+
+		return getAllCategoryResponses;
+	}
+
+	@Override
+	public GetByIdCategoryResponse getById(int categoryId) {
+		return categoryMapper
+				.categoryToGetByIdCategoryResponse(this.categoryRepository.findById(categoryId).orElse(null));
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import com.biricik.ecommerce.model.Customer;
+
+public interface CustomerService {
+	
+	public Customer findById(int customerId);
+
+}

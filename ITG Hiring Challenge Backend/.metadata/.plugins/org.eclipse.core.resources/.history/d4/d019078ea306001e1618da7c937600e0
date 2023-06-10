@@ -1,0 +1,5 @@
+package com.biricik.automotive.business.abstracts;
+
+public interface CargoService {
+
+}

@@ -1,0 +1,584 @@
+2023-06-07 11:37:14,894 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 4193 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 11:37:14,898 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 11:37:14,965 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-07 11:37:14,966 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-07 11:37:15,977 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 11:37:16,113 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 126 ms. Found 19 JPA repository interfaces.
+2023-06-07 11:37:17,462 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 11:37:17,472 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 11:37:17,473 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 11:37:17,547 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 11:37:17,550 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2581 ms
+2023-06-07 11:37:17,620 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-06-07 11:37:17,817 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 11:37:17,820 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-06-07 11:37:17,833 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 11:37:18,051 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 11:37:18,113 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-06-07 11:37:18,117 INFO o.h.c.Environment [restartedMain] HHH000406: Using bytecode reflection optimizer
+2023-06-07 11:37:18,246 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 11:37:18,379 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 11:37:18,430 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 11:37:18,790 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 11:37:20,119 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 11:37:20,228 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 11:37:20,232 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 11:37:20,864 INFO o.s.d.j.r.q.QueryEnhancerFactory [restartedMain] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-06-07 11:37:22,511 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 11:37:24,150 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6d312208, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45e290c0, org.springframework.security.web.context.SecurityContextHolderFilter@1881b530, org.springframework.security.web.header.HeaderWriterFilter@346d5af5, org.springframework.security.web.authentication.logout.LogoutFilter@509d499a, com.biricik.automotive.security.AuthenticationTokenFilter@1ca528b2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@499fffd1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5fec157f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@18ae3cf7, org.springframework.security.web.access.ExceptionTranslationFilter@2be543d5, org.springframework.security.web.access.intercept.AuthorizationFilter@1f38453e]
+2023-06-07 11:37:24,703 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 11:37:24,741 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 11:37:24,753 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 10.391 seconds (process running for 11.147)
+2023-06-07 11:37:54,218 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 11:37:54,219 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [SpringApplicationShutdownHook] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 11:37:54,627 WARN o.s.b.f.s.DisposableBeanAdapter [SpringApplicationShutdownHook] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 11:37:54,629 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-06-07 11:37:54,739 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-06-07 20:30:20,297 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:30:20,303 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:30:20,376 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-07 20:30:20,377 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-07 20:30:21,496 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:30:21,673 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 166 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:30:23,913 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:30:23,932 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:30:23,934 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:30:24,089 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:30:24,097 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3713 ms
+2023-06-07 20:30:24,198 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-06-07 20:30:24,495 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:30:24,498 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-06-07 20:30:24,520 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:30:24,854 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:30:24,961 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-06-07 20:30:24,969 INFO o.h.c.Environment [restartedMain] HHH000406: Using bytecode reflection optimizer
+2023-06-07 20:30:25,224 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:30:25,359 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:30:25,407 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:30:25,765 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:30:27,352 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:30:27,494 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:30:27,500 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:30:28,223 INFO o.s.d.j.r.q.QueryEnhancerFactory [restartedMain] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-06-07 20:30:30,007 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:30:32,016 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1025d032, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2efc55, org.springframework.security.web.context.SecurityContextHolderFilter@3b384f48, org.springframework.security.web.header.HeaderWriterFilter@6671bd16, org.springframework.security.web.authentication.logout.LogoutFilter@7480ef7, com.biricik.automotive.security.AuthenticationTokenFilter@64019670, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@380f1238, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e8951a6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@141438b9, org.springframework.security.web.access.ExceptionTranslationFilter@1ec48d21, org.springframework.security.web.access.intercept.AuthorizationFilter@473a7283]
+2023-06-07 20:30:32,646 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:30:32,687 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:30:32,701 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 13.004 seconds (process running for 14.149)
+2023-06-07 20:31:21,527 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-07 20:31:21,529 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-06-07 20:31:21,532 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2023-06-07 20:31:54,672 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Entering in Method : CategoriesController.getAllCategories() , ClassName : com.biricik.automotive.controllers.CategoriesController , Arguments : []
+2023-06-07 20:31:54,673 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Metohd Type: GET
+2023-06-07 20:31:54,673 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: host Header Value : localhost:8080
+2023-06-07 20:31:54,674 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: connection Header Value : keep-alive
+2023-06-07 20:31:54,674 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:31:54,674 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept Header Value : application/json
+2023-06-07 20:31:54,675 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-language Header Value : en
+2023-06-07 20:31:54,675 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:31:54,676 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:31:54,677 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:31:54,678 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:31:54,680 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:31:54,682 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:31:54,683 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:31:54,684 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:31:54,685 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:32:01,436 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Entering in Method : BrandController.findByCategoryId(..) , ClassName : com.biricik.automotive.controllers.BrandController , Arguments : [1]
+2023-06-07 20:32:01,437 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Metohd Type: GET
+2023-06-07 20:32:01,437 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: host Header Value : localhost:8080
+2023-06-07 20:32:01,437 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: connection Header Value : keep-alive
+2023-06-07 20:32:01,437 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:32:01,438 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: accept Header Value : application/json
+2023-06-07 20:32:01,438 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: accept-language Header Value : en
+2023-06-07 20:32:01,439 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:32:01,439 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:32:01,439 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:32:01,439 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:32:01,440 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:32:01,440 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:32:01,440 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:32:01,441 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:32:01,441 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-3] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:34:06,421 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:34:06,457 INFO o.a.j.l.DirectJDKLog [Thread-6] Stopping service [Tomcat]
+2023-06-07 20:34:06,460 INFO o.a.j.l.DirectJDKLog [Thread-6] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-06-07 20:34:06,494 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-6] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:34:06,496 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-6] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:34:06,739 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-6] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:34:06,742 INFO c.z.h.HikariDataSource [Thread-6] HikariPool-1 - Shutdown initiated...
+2023-06-07 20:34:06,753 INFO c.z.h.HikariDataSource [Thread-6] HikariPool-1 - Shutdown completed.
+2023-06-07 20:34:09,376 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:34:09,379 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:34:10,167 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:34:10,227 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 59 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:34:10,548 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:34:10,549 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:34:10,550 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:34:10,587 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:34:10,587 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1198 ms
+2023-06-07 20:34:10,681 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2023-06-07 20:34:10,685 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:34:10,685 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2023-06-07 20:34:10,686 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:34:10,758 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:34:10,767 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:34:10,768 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:34:10,770 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:34:10,918 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:34:11,321 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:34:11,382 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:34:11,384 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:34:12,470 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:34:13,323 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@350704eb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22c83f8e, org.springframework.security.web.context.SecurityContextHolderFilter@2119ab05, org.springframework.security.web.header.HeaderWriterFilter@dd06480, org.springframework.security.web.authentication.logout.LogoutFilter@38f5f5b0, com.biricik.automotive.security.AuthenticationTokenFilter@621ffc23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7084eb8e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5aa2a60d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1885a505, org.springframework.security.web.access.ExceptionTranslationFilter@1bf62f5c, org.springframework.security.web.access.intercept.AuthorizationFilter@2027e097]
+2023-06-07 20:34:13,616 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:34:13,628 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:34:13,635 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 4.448 seconds (process running for 235.083)
+2023-06-07 20:34:13,789 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:34:39,150 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-07 20:34:39,160 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-06-07 20:34:39,166 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 5 ms
+2023-06-07 20:34:39,219 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Entering in Method : CategoriesController.getAllCategories() , ClassName : com.biricik.automotive.controllers.CategoriesController , Arguments : []
+2023-06-07 20:34:39,219 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Metohd Type: GET
+2023-06-07 20:34:39,220 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: host Header Value : localhost:8080
+2023-06-07 20:34:39,221 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: connection Header Value : keep-alive
+2023-06-07 20:34:39,222 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:34:39,223 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept Header Value : application/json
+2023-06-07 20:34:39,224 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept-language Header Value : en
+2023-06-07 20:34:39,225 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:34:39,225 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:34:39,226 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:34:39,226 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:34:39,226 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:34:39,227 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:34:39,227 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:34:39,227 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:34:39,228 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:34:45,812 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Entering in Method : BrandController.findByCategoryId(..) , ClassName : com.biricik.automotive.controllers.BrandController , Arguments : [1]
+2023-06-07 20:34:45,813 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Metohd Type: GET
+2023-06-07 20:34:45,814 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: host Header Value : localhost:8080
+2023-06-07 20:34:45,814 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: connection Header Value : keep-alive
+2023-06-07 20:34:45,815 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:34:45,815 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept Header Value : application/json
+2023-06-07 20:34:45,816 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-language Header Value : en
+2023-06-07 20:34:45,816 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:34:45,816 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:34:45,817 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:34:45,817 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:34:45,817 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:34:45,818 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:34:45,818 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:34:45,818 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:34:45,819 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:35:26,982 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:35:27,010 INFO o.a.j.l.DirectJDKLog [Thread-8] Stopping service [Tomcat]
+2023-06-07 20:35:27,013 INFO o.a.j.l.DirectJDKLog [Thread-8] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-06-07 20:35:27,044 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-8] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:35:27,045 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-8] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:35:27,275 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-8] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:35:27,285 INFO c.z.h.HikariDataSource [Thread-8] HikariPool-2 - Shutdown initiated...
+2023-06-07 20:35:27,290 INFO c.z.h.HikariDataSource [Thread-8] HikariPool-2 - Shutdown completed.
+2023-06-07 20:35:27,769 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:35:27,769 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:35:28,259 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:35:28,303 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 43 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:35:28,591 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:35:28,592 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:35:28,592 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:35:28,611 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:35:28,615 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 843 ms
+2023-06-07 20:35:28,658 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-3 - Starting...
+2023-06-07 20:35:28,661 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-3 - Added connection conn20: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:35:28,662 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-3 - Start completed.
+2023-06-07 20:35:28,663 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:35:28,745 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:35:28,759 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:35:28,760 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:35:28,761 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:35:28,878 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:35:29,116 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:35:29,147 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:35:29,148 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:35:29,846 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:35:30,988 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@40ee76df, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2231bdec, org.springframework.security.web.context.SecurityContextHolderFilter@7c3491f1, org.springframework.security.web.header.HeaderWriterFilter@3d46ec43, org.springframework.security.web.authentication.logout.LogoutFilter@39cb7ed0, com.biricik.automotive.security.AuthenticationTokenFilter@5233d685, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@37b6555f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b061dda, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@809bbb1, org.springframework.security.web.access.ExceptionTranslationFilter@93abac1, org.springframework.security.web.access.intercept.AuthorizationFilter@67e1ea96]
+2023-06-07 20:35:31,377 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:35:31,389 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:35:31,395 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 3.675 seconds (process running for 312.842)
+2023-06-07 20:35:31,560 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:37:42,211 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:37:42,215 INFO o.a.j.l.DirectJDKLog [Thread-12] Stopping service [Tomcat]
+2023-06-07 20:37:42,230 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-12] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:37:42,230 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-12] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:37:42,441 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-12] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:37:42,441 INFO c.z.h.HikariDataSource [Thread-12] HikariPool-3 - Shutdown initiated...
+2023-06-07 20:37:42,442 INFO c.z.h.HikariDataSource [Thread-12] HikariPool-3 - Shutdown completed.
+2023-06-07 20:37:42,592 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:37:42,593 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:37:42,868 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:37:42,902 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 33 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:37:43,034 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:37:43,035 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:37:43,036 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:37:43,046 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:37:43,046 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 449 ms
+2023-06-07 20:37:43,068 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-4 - Starting...
+2023-06-07 20:37:43,070 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-4 - Added connection conn30: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:37:43,070 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-4 - Start completed.
+2023-06-07 20:37:43,070 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:37:43,133 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:37:43,139 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:37:43,140 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:37:43,141 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:37:43,221 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:37:43,404 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:37:43,431 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:37:43,432 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:37:43,876 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:37:44,645 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@39a0cc83, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ade87b3, org.springframework.security.web.context.SecurityContextHolderFilter@1e60b739, org.springframework.security.web.header.HeaderWriterFilter@2c4d6e4a, org.springframework.security.web.authentication.logout.LogoutFilter@132019b5, com.biricik.automotive.security.AuthenticationTokenFilter@268843b5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24a126fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f1ab668, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ebe4549, org.springframework.security.web.access.ExceptionTranslationFilter@58b67cd5, org.springframework.security.web.access.intercept.AuthorizationFilter@24280bbf]
+2023-06-07 20:37:44,892 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:37:44,903 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:37:44,907 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 2.371 seconds (process running for 446.355)
+2023-06-07 20:37:45,038 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:44:50,286 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:44:50,752 INFO o.a.j.l.DirectJDKLog [Thread-16] Stopping service [Tomcat]
+2023-06-07 20:44:51,095 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-16] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:44:51,117 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:44:51,707 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-16] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:44:51,712 INFO c.z.h.HikariDataSource [Thread-16] HikariPool-4 - Shutdown initiated...
+2023-06-07 20:44:51,734 INFO c.z.h.HikariDataSource [Thread-16] HikariPool-4 - Shutdown completed.
+2023-06-07 20:44:55,817 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:44:55,818 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:44:56,797 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:44:56,927 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 129 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:44:57,687 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:44:57,689 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:44:57,691 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:44:57,732 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:44:57,733 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1907 ms
+2023-06-07 20:44:57,857 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-5 - Starting...
+2023-06-07 20:44:57,869 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-5 - Added connection conn40: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:44:57,870 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-5 - Start completed.
+2023-06-07 20:44:57,870 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:44:58,038 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:44:58,046 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:44:58,047 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:44:58,049 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:44:58,161 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:44:58,347 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:44:58,375 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:44:58,375 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:44:58,824 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:44:59,585 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d4c6e6b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@532f3a7b, org.springframework.security.web.context.SecurityContextHolderFilter@4fd6580d, org.springframework.security.web.header.HeaderWriterFilter@706f389e, org.springframework.security.web.authentication.logout.LogoutFilter@5139e899, com.biricik.automotive.security.AuthenticationTokenFilter@15102a8b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36c6164a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@25f0bcd6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ae82efc, org.springframework.security.web.access.ExceptionTranslationFilter@68af614d, org.springframework.security.web.access.intercept.AuthorizationFilter@777dc081]
+2023-06-07 20:44:59,871 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:44:59,881 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:44:59,885 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 4.265 seconds (process running for 881.333)
+2023-06-07 20:44:59,995 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:48:28,430 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-07 20:48:28,476 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-06-07 20:48:28,733 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 255 ms
+2023-06-07 20:48:29,157 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Entering in Method : CategoriesController.getAllCategories() , ClassName : com.biricik.automotive.controllers.CategoriesController , Arguments : []
+2023-06-07 20:48:29,249 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Metohd Type: GET
+2023-06-07 20:48:29,250 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: host Header Value : localhost:8080
+2023-06-07 20:48:29,251 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: connection Header Value : keep-alive
+2023-06-07 20:48:29,252 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:48:29,252 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept Header Value : application/json
+2023-06-07 20:48:29,253 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept-language Header Value : en
+2023-06-07 20:48:29,253 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:48:29,254 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:48:29,254 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:48:29,254 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:48:29,255 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:48:29,256 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:48:29,257 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:48:29,259 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:48:29,260 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-1] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:48:37,458 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Entering in Method : BrandController.findByCategoryId(..) , ClassName : com.biricik.automotive.controllers.BrandController , Arguments : [1]
+2023-06-07 20:48:37,462 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Metohd Type: GET
+2023-06-07 20:48:37,462 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: host Header Value : localhost:8080
+2023-06-07 20:48:37,463 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: connection Header Value : keep-alive
+2023-06-07 20:48:37,463 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:48:37,464 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept Header Value : application/json
+2023-06-07 20:48:37,464 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-language Header Value : en
+2023-06-07 20:48:37,464 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:48:37,465 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:48:37,465 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:48:37,466 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:48:37,466 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:48:37,467 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:48:37,467 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:48:37,468 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:48:37,468 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-2] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:48:41,091 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.multipart.MultipartException: Current request is not a multipart request] with root cause
+org.springframework.web.multipart.MultipartException: Current request is not a multipart request
+	at org.springframework.web.servlet.mvc.method.annotation.RequestPartMethodArgumentResolver.resolveArgument(RequestPartMethodArgumentResolver.java:163)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:181)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:148)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.biricik.automotive.security.AuthenticationTokenFilter.doFilterInternal(AuthenticationTokenFilter.java:49)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-06-07 20:49:32,037 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Entering in Method : ProductController.addProduct(..) , ClassName : com.biricik.automotive.controllers.ProductController , Arguments : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@5ee285a9]
+2023-06-07 20:49:32,039 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Metohd Type: POST
+2023-06-07 20:49:32,040 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: host Header Value : localhost:8080
+2023-06-07 20:49:32,041 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: connection Header Value : keep-alive
+2023-06-07 20:49:32,042 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: content-length Header Value : 47969
+2023-06-07 20:49:32,042 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:49:32,044 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: accept Header Value : application/json, text/plain, */*
+2023-06-07 20:49:32,044 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: content-type Header Value : multipart/form-data; boundary=----WebKitFormBoundaryTV8wSv4XsZAxiVyB
+2023-06-07 20:49:32,045 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:49:32,045 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:49:32,045 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:49:32,046 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:49:32,046 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:49:32,046 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:49:32,047 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:49:32,048 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:49:32,049 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:49:32,049 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-4] Header Name: accept-language Header Value : tr,en-US;q=0.9,en;q=0.8,tr-TR;q=0.7
+2023-06-07 20:50:01,541 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:50:01,726 INFO o.a.j.l.DirectJDKLog [Thread-20] Stopping service [Tomcat]
+2023-06-07 20:50:01,743 INFO o.a.j.l.DirectJDKLog [Thread-20] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-06-07 20:50:01,842 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-20] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:50:01,849 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-20] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:50:02,155 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-20] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:50:02,159 INFO c.z.h.HikariDataSource [Thread-20] HikariPool-5 - Shutdown initiated...
+2023-06-07 20:50:02,170 INFO c.z.h.HikariDataSource [Thread-20] HikariPool-5 - Shutdown completed.
+2023-06-07 20:50:04,685 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:50:04,686 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:50:06,069 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:50:06,324 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 254 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:50:07,556 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:50:07,569 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:50:07,574 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:50:07,763 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:50:07,763 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3069 ms
+2023-06-07 20:50:08,030 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-6 - Starting...
+2023-06-07 20:50:08,058 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-6 - Added connection conn50: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:50:08,059 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-6 - Start completed.
+2023-06-07 20:50:08,060 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:50:08,432 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:50:08,440 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:50:08,441 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:50:08,444 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:50:08,528 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:50:08,748 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:50:08,784 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:50:08,785 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:50:09,331 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:50:10,567 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@36f1859d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70f96aa4, org.springframework.security.web.context.SecurityContextHolderFilter@58a7464c, org.springframework.security.web.header.HeaderWriterFilter@529f38d9, org.springframework.security.web.authentication.logout.LogoutFilter@4370b7d0, com.biricik.automotive.security.AuthenticationTokenFilter@2192846f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a122afc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@a75b8ed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9fa6e43, org.springframework.security.web.access.ExceptionTranslationFilter@7684c67d, org.springframework.security.web.access.intercept.AuthorizationFilter@2f6b43aa]
+2023-06-07 20:50:11,043 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:50:11,057 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:50:11,063 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 6.534 seconds (process running for 1191.708)
+2023-06-07 20:50:11,175 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:50:12,456 INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-06-07 20:50:12,463 INFO o.a.j.l.DirectJDKLog [Thread-24] Stopping service [Tomcat]
+2023-06-07 20:50:12,478 INFO o.s.o.j.AbstractEntityManagerFactoryBean [Thread-24] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:50:12,479 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [Thread-24] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 20:50:12,694 WARN o.s.b.f.s.DisposableBeanAdapter [Thread-24] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 20:50:12,695 INFO c.z.h.HikariDataSource [Thread-24] HikariPool-6 - Shutdown initiated...
+2023-06-07 20:50:12,697 INFO c.z.h.HikariDataSource [Thread-24] HikariPool-6 - Shutdown completed.
+2023-06-07 20:50:12,844 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AutomotiveApplication using Java 19.0.2 with PID 48850 (/home/serhatb0/Desktop/ITG Hiring Challenge/automotive/target/classes started by serhatb0 in /home/serhatb0/Desktop/ITG Hiring Challenge/automotive)
+2023-06-07 20:50:12,844 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-06-07 20:50:13,192 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-07 20:50:13,233 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 40 ms. Found 19 JPA repository interfaces.
+2023-06-07 20:50:13,373 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-06-07 20:50:13,374 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-06-07 20:50:13,374 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-07 20:50:13,384 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-06-07 20:50:13,385 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 539 ms
+2023-06-07 20:50:13,418 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-7 - Starting...
+2023-06-07 20:50:13,421 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-7 - Added connection conn60: url=jdbc:h2:mem:mydb user=SA
+2023-06-07 20:50:13,421 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-7 - Start completed.
+2023-06-07 20:50:13,422 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mydb'
+2023-06-07 20:50:13,512 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-07 20:50:13,519 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:50:13,519 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-06-07 20:50:13,521 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2023-06-07 20:50:13,607 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-06-07 20:50:13,813 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-07 20:50:13,855 INFO o.h.t.s.i.e.GenerationTargetToDatabase [restartedMain] HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-06-07 20:50:13,856 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 20:50:14,305 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-07 20:50:14,853 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a17ffff, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74132c8c, org.springframework.security.web.context.SecurityContextHolderFilter@36369969, org.springframework.security.web.header.HeaderWriterFilter@33911e16, org.springframework.security.web.authentication.logout.LogoutFilter@57b742d, com.biricik.automotive.security.AuthenticationTokenFilter@18ad2835, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4190690d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c5e8056, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3ed4f25d, org.springframework.security.web.access.ExceptionTranslationFilter@4d660abb, org.springframework.security.web.access.intercept.AuthorizationFilter@f75d904]
+2023-06-07 20:50:15,077 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-06-07 20:50:15,086 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-06-07 20:50:15,090 INFO o.s.b.StartupInfoLogger [restartedMain] Started AutomotiveApplication in 2.273 seconds (process running for 1195.735)
+2023-06-07 20:50:15,215 INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-06-07 20:50:21,705 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-07 20:50:21,707 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-06-07 20:50:21,712 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 5 ms
+2023-06-07 20:50:21,744 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'createProductRequest' is not present.]
+2023-06-07 20:52:02,126 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-2] Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'createProductRequest' is not present.]
+2023-06-07 20:52:48,613 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/octet-stream' is not supported]
+2023-06-07 20:54:32,455 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/octet-stream' is not supported]
+2023-06-07 20:55:27,572 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Entering in Method : CategoriesController.getAllCategories() , ClassName : com.biricik.automotive.controllers.CategoriesController , Arguments : []
+2023-06-07 20:55:27,634 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Metohd Type: GET
+2023-06-07 20:55:27,636 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: host Header Value : localhost:8080
+2023-06-07 20:55:27,638 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: connection Header Value : keep-alive
+2023-06-07 20:55:27,639 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:55:27,640 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: accept Header Value : application/json
+2023-06-07 20:55:27,641 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: accept-language Header Value : en
+2023-06-07 20:55:27,642 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:55:27,643 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:55:27,644 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:55:27,645 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:55:27,646 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:55:27,647 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:55:27,648 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:55:27,649 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:55:27,651 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-6] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:55:31,715 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Entering in Method : BrandController.findByCategoryId(..) , ClassName : com.biricik.automotive.controllers.BrandController , Arguments : [1]
+2023-06-07 20:55:31,718 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Metohd Type: GET
+2023-06-07 20:55:31,718 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: host Header Value : localhost:8080
+2023-06-07 20:55:31,719 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: connection Header Value : keep-alive
+2023-06-07 20:55:31,720 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 20:55:31,721 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept Header Value : application/json
+2023-06-07 20:55:31,722 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept-language Header Value : en
+2023-06-07 20:55:31,722 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 20:55:31,723 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 20:55:31,725 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 20:55:31,726 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 20:55:31,727 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 20:55:31,728 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 20:55:31,730 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 20:55:31,730 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 20:55:31,732 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 20:55:38,756 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/octet-stream' is not supported]
+2023-06-07 20:55:56,864 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.PaymentController
+2023-06-07 20:55:58,000 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.AuthController
+2023-06-07 20:55:58,019 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.CouponsController
+2023-06-07 20:55:58,072 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.ShoppingCartController
+2023-06-07 20:55:58,115 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.ProductController
+2023-06-07 20:55:58,254 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.CategoriesController
+2023-06-07 20:55:58,295 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.BrandController
+2023-06-07 20:55:58,373 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.AddressController
+2023-06-07 20:55:58,603 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.OrderController
+2023-06-07 20:55:58,657 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.DistrictController
+2023-06-07 20:55:58,691 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.CountryController
+2023-06-07 20:55:58,700 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.CityController
+2023-06-07 20:55:58,753 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [http-nio-8080-exec-6] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.biricik.automotive.controllers.ShoppingCartItemController
+2023-06-07 20:55:58,798 INFO o.s.a.AbstractOpenApiResource [http-nio-8080-exec-6] Init duration for springdoc-openapi is: 3953 ms
+2023-06-07 20:56:57,491 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/octet-stream' is not supported]
+2023-06-07 21:01:35,412 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Entering in Method : ProductController.addProduct(..) , ClassName : com.biricik.automotive.controllers.ProductController , Arguments : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@6240e0c5, CreateProductRequest(name=sadsad, description=asdsad, price=22, quantity=22, categoryId=1, brandId=1)]
+2023-06-07 21:01:35,419 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Metohd Type: POST
+2023-06-07 21:01:35,420 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: host Header Value : localhost:8080
+2023-06-07 21:01:35,422 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: connection Header Value : keep-alive
+2023-06-07 21:01:35,422 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: content-length Header Value : 48221
+2023-06-07 21:01:35,423 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-ch-ua Header Value : "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
+2023-06-07 21:01:35,423 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: accept Header Value : application/json, text/plain, */*
+2023-06-07 21:01:35,423 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: content-type Header Value : multipart/form-data; boundary=----WebKitFormBoundaryp1UqVTw8UsA8T7Gz
+2023-06-07 21:01:35,424 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-ch-ua-mobile Header Value : ?0
+2023-06-07 21:01:35,424 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: user-agent Header Value : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+2023-06-07 21:01:35,425 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-ch-ua-platform Header Value : "Linux"
+2023-06-07 21:01:35,426 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: origin Header Value : http://localhost:3000
+2023-06-07 21:01:35,427 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-fetch-site Header Value : same-site
+2023-06-07 21:01:35,427 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-fetch-mode Header Value : cors
+2023-06-07 21:01:35,427 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: sec-fetch-dest Header Value : empty
+2023-06-07 21:01:35,428 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: referer Header Value : http://localhost:3000/
+2023-06-07 21:01:35,428 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: accept-encoding Header Value : gzip, deflate, br
+2023-06-07 21:01:35,429 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-5] Header Name: accept-language Header Value : tr,en-US;q=0.9,en;q=0.8,tr-TR;q=0.7
+2023-06-07 21:02:05,702 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Entering in Method : ProductController.getAllProducts(..) , ClassName : com.biricik.automotive.controllers.ProductController , Arguments : [null, 20, 0, null, null, Optional.empty]
+2023-06-07 21:02:05,703 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Metohd Type: GET
+2023-06-07 21:02:05,704 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept Header Value : application/json
+2023-06-07 21:02:05,704 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: content-type Header Value : application/json
+2023-06-07 21:02:05,705 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept-language Header Value : en
+2023-06-07 21:02:05,705 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: user-agent Header Value : axios/1.3.5
+2023-06-07 21:02:05,706 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: accept-encoding Header Value : gzip, compress, deflate, br
+2023-06-07 21:02:05,706 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: host Header Value : localhost:8080
+2023-06-07 21:02:05,706 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-7] Header Name: connection Header Value : close
+2023-06-07 21:02:06,199 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Entering in Method : CategoriesController.getAllCategories() , ClassName : com.biricik.automotive.controllers.CategoriesController , Arguments : []
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Metohd Type: GET
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: accept Header Value : application/json
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: content-type Header Value : application/json
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: accept-language Header Value : en
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: user-agent Header Value : axios/1.3.5
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: accept-encoding Header Value : gzip, compress, deflate, br
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: host Header Value : localhost:8080
+2023-06-07 21:02:06,200 INFO c.b.a.a.LoggingAspect [http-nio-8080-exec-9] Header Name: connection Header Value : close
+2023-06-07 21:02:16,401 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-07 21:02:16,403 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [SpringApplicationShutdownHook] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-06-07 21:02:16,796 WARN o.s.b.f.s.DisposableBeanAdapter [SpringApplicationShutdownHook] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2023-06-07 21:02:16,797 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-7 - Shutdown initiated...
+2023-06-07 21:02:16,902 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-7 - Shutdown completed.

@@ -1,0 +1,18 @@
+package com.biricik.automotive.business.abstracts;
+import java.io.UnsupportedEncodingException;
+
+import com.biricik.automotive.business.requests.authRequest.SendEmailAdminRequest;
+import com.biricik.automotive.model.User;
+
+import jakarta.mail.MessagingException;
+
+public interface EmailService {
+
+	public void sendEmail(User user) throws UnsupportedEncodingException, MessagingException;
+
+	public void sendEmailForAdmin(SendEmailAdminRequest sendEmailAdminRequest);
+	
+	public String confirmEmail(String confirmationToken);
+
+	public void sendEmailForPayment(int userId, int shoppingCartId);
+}

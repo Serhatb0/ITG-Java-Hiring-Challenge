@@ -1,0 +1,5 @@
+package com.biricik.automotive.core.mappers;
+
+public class ModelMapperService {
+
+}

@@ -1,0 +1,19 @@
+package com.biricik.ecommerce.business.responses.couponResponses;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateCouponResponse {
+
+	private String code;
+
+	private BigDecimal discount;
+
+	private LocalDate expiresAt;
+
+}

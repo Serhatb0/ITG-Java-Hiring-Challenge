@@ -1,0 +1,14 @@
+{
+    "errors": {
+      "0001": "kuponun süresi doldu",
+      "0002":"Kupon Geçerli Değil",
+      "0003":"Kullanıcı adı zaten alındı",
+      "0004":"Bu email zaten kullanımda"
+      
+    },
+    "success": {
+      "0001": "kupon Başarıyla uygulandı"
+  
+    
+    }
+  }

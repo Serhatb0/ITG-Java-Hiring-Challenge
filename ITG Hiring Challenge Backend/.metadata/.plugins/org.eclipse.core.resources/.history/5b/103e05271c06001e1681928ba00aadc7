@@ -1,0 +1,5 @@
+package com.biricik.automotive.business.requests.authRequest;
+
+public class SendEmailAdminRequest {
+
+}

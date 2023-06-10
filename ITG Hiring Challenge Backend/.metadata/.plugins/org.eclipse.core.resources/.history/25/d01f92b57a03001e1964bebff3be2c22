@@ -1,0 +1,14 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.responses.addressResponses.FindByCountryIdCityResponse;
+import com.biricik.ecommerce.model.City;
+
+public interface CityService {
+
+	List<FindByCountryIdCityResponse> findByCountryId(int countryId);
+
+	City findById(int cityId);
+
+}

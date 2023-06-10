@@ -1,0 +1,58 @@
+[
+	{
+		"name": "Kızıltepe",
+		"city": {
+			"id": 2,
+			"name": "Mardin",
+			"postalCode": "47400"
+		}
+	},
+	{
+		"name": "Nusaybin",
+		"city": {
+			"id": 2,
+			"name": "Mardin",
+			"postalCode": "47400"
+		}
+	},
+	{
+		"name": "Artuklu",
+		"city": {
+			"id": 2,
+			"name": "Mardin",
+			"postalCode": "47400"
+		}
+	},
+	{
+		"name": "Esenler",
+		"city": {
+			"id": 1,
+			"name": "Istanbul",
+			"postalCode": "34400"
+		}
+	},
+	{
+		"name": "Taksim",
+		"city": {
+			"id": 1,
+			"name": "Istanbul",
+			"postalCode": "34400"
+		}
+	},
+	{
+		"name": "Manhattan",
+		"city": {
+			"id": 5,
+			"name": "New York",
+			"postalCode": "10045"
+		}
+	},
+	{
+		"name": "Brooklyn",
+		"city": {
+			"id": 5,
+			"name": "New York",
+			"postalCode": "10045"
+		}
+	}
+]

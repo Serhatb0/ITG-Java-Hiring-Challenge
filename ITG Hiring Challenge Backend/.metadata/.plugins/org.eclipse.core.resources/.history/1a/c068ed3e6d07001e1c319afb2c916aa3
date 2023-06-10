@@ -1,0 +1,12 @@
+package com.biricik.automotive.business.requests.productRequest;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class AddImageForProductRequest {
+	
+	private int productId;
+
+}

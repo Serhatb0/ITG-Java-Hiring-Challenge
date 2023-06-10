@@ -1,0 +1,128 @@
+[
+	{
+		"id": 1,
+		"name": "Product image",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1686414823/download_rdba1i.jpg",
+		"size": 10000,
+		"product": {
+			"id": 1,
+			"name": "Bosch Fren Balatası",
+			"description": "Yüksek performanslı Bosch markalı fren balatası, güvenli ve etkili frenleme sağlar.",
+			"price": 799.99,
+			"quantity": 20,
+			"category": {
+				"id": 1,
+				"name": "Motor Parçaları"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Bosch"
+			}
+		}
+	},
+	{
+		"id": 2,
+		"name": "Product image 2",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1686414966/download_ndwesl.jpg",
+		"size": 10000,
+		"product": {
+			"id": 2,
+			"name": "Bosch Yakıt Pompası",
+			"description": "Yüksek performanslı Bosch markalı yakıt pompası, yakıt verimliliğini artırır.",
+			"price": 150.00,
+			"quantity": 30,
+			"category": {
+				"id": 1,
+				"name": "Motor Parçaları"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Bosch"
+			}
+		}
+	},
+	{
+		"id": 3,
+		"name": "Product image 3",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1686415012/download_je5gg9.jpg",
+		"size": 10000,
+		"product": {
+			"id": 3,
+			"name": "Bosch Oksijen Sensörü",
+			"description": "Yüksek hassasiyete sahip Bosch markalı oksijen sensörü, motor performansını optimize eder.",
+			"price": 1299.99,
+			"quantity": 15,
+			"category": {
+				"id": 1,
+				"name": "Motor Parçaları"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Bosch"
+			}
+		}
+	},
+	{
+		"id": 4,
+		"name": "Product image 4",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1686415073/download_vro3c8.jpg",
+		"size": 10000,
+		"product": {
+			"id": 4,
+			"name": "Continental Amortisör",
+			"description": "Yüksek performanslı Continental markalı amortisör, sürüş konforunu artırır ve yol tutuşunu iyileştirir.",
+			"price": 1800.99,
+			"quantity": 15,
+			"category": {
+				"id": 2,
+				"name": "Şasi Parçaları"
+			},
+			"brand": {
+				"id": 2,
+				"name": "Continental"
+			}
+		}
+	},
+	{
+		"id": 5,
+		"name": "Product image 5",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1686415114/download_hosu4n.jpg",
+		"size": 10000,
+		"product": {
+			"id": 5,
+			"name": "Delphi Ateşleme Bobini",
+			"description": "Yüksek performanslı Delphi markalı ateşleme bobini, yakıt verimliliğini artırır ve güçlü ateşleme sağlar.",
+			"price": 2000,
+			"quantity": 8,
+			"category": {
+				"id": 3,
+				"name": "Elektrik Parçaları"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Delphi"
+			}
+		}
+	},
+	{
+		"id": 6,
+		"name": "Product image 6",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526721/product-3_bjqwde.jpg",
+		"size": 10000,
+		"product": {
+			"id": 6,
+			"name": "Delphi Yakıt Enjektörü",
+			"description": "Yüksek kaliteli Delphi markalı yakıt enjektörü, yakıt verimliliğini optimize eder ve güçlü performans sağlar.",
+			"price": 300,
+			"quantity": 5,
+			"category": {
+				"id": 3,
+				"name": "Elektrik Parçaları"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Delphi"
+			}
+		}
+	}
+]

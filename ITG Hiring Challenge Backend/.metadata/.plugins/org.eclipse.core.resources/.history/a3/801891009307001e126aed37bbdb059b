@@ -1,0 +1,8 @@
+package com.biricik.automotive.model;
+
+
+
+public enum ERole {
+	
+	USER,ROLE_ADMIN
+}

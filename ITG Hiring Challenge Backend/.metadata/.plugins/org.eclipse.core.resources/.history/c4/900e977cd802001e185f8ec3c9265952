@@ -1,0 +1,6 @@
+package com.biricik.ecommerce.model;
+
+public enum AuthProvider {
+
+	LOCAL,google,github
+}

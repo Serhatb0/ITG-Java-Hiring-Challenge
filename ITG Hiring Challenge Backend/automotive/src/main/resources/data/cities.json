@@ -1,0 +1,56 @@
+[
+	{
+		"name": "Istanbul",
+		"postalCode": "34400",
+		"country": {
+			"id": 61,
+			"name": "Türkiye",
+			"isoCode": "TR"
+		}
+	},
+	{
+		"name": "Mardin",
+		"postalCode": "47400",
+		"country": {
+			"id": 61,
+			"name": "Türkiye",
+			"isoCode": "TR"
+		}
+	},
+	{
+		"name": "Diyarbakır",
+		"postalCode": "85966",
+		"country": {
+			"id": 61,
+			"name": "Türkiye",
+			"isoCode": "TR"
+		}
+	},
+	{
+		"name": "Van",
+		"postalCode": "23422",
+		"country": {
+			"id": 61,
+			"name": "Türkiye",
+			"isoCode": "TR"
+		}
+	},
+	{
+		"name": "New York",
+		"postalCode": "10045",
+		"country": {
+			"id": 34,
+			"name": "United States",
+			"isoCode": "US"
+		}
+	},
+	{
+		"name": "Washington",
+		"postalCode": "4586",
+		"country": {
+			"id": 34,
+			"name": "United States",
+			"isoCode": "US"
+		}
+	}
+]

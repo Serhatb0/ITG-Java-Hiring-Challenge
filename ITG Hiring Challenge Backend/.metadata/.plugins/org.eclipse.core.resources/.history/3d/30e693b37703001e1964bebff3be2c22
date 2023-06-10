@@ -1,0 +1,16 @@
+package com.biricik.ecommerce.business.requests.couponRequest;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateCouponRequest {
+
+	private BigDecimal discount;
+
+	private LocalDate expiresAt;
+}

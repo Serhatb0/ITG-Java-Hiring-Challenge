@@ -1,0 +1,28 @@
+package com.biricik.automotive.controllers;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biricik.automotive.business.abstracts.CountryService;
+import com.biricik.automotive.business.responses.addressResponses.GetAllCountryResponse;
+
+@RestController
+@RequestMapping("/api/v1")
+public class CountryController {
+
+	private final CountryService countryService;
+
+	public CountryController(CountryService countryService) {
+		this.countryService = countryService;
+	}
+
+	@GetMapping("/countries")
+	public List<GetAllCountryResponse> getAll() {
+		return countryService.getAll();
+	}
+
+}

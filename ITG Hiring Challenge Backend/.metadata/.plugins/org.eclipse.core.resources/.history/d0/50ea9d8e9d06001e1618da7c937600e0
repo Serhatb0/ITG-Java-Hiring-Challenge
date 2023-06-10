@@ -1,0 +1,5 @@
+package com.biricik.automotive.repository;
+
+public class CreditCardRepository {
+
+}

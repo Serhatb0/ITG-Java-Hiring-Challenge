@@ -1,0 +1,36 @@
+package com.biricik.automotive.business.requests.authRequest;
+
+
+import com.biricik.automotive.validator.UniqueEmail;
+import com.biricik.automotive.validator.UniqueUserName;
+
+import io.micrometer.common.lang.NonNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RegisterRequest {
+
+	@NotBlank
+	private String firstName;
+	@NotBlank
+	private String lastName;
+	
+	@UniqueUserName
+	private String userName;
+	
+	@UniqueEmail
+	@Email
+	private String email;
+	
+	@NotBlank
+	@Min(6)
+	private String password;
+
+}

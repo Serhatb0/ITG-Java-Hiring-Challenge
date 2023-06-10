@@ -1,0 +1,152 @@
+package com.biricik.automotive.business.concretes;
+
+import java.io.UnsupportedEncodingException;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CustomerService;
+import com.biricik.automotive.business.abstracts.EmailService;
+import com.biricik.automotive.business.requests.authRequest.SendEmailAdminRequest;
+import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.model.EmailConfirmationToken;
+import com.biricik.automotive.model.User;
+import com.biricik.automotive.repository.ConfirmationTokenRepository;
+import com.biricik.automotive.repository.UserRepository;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Service
+public class EmailManager implements EmailService {
+
+	private final JavaMailSender javaMailSender;
+	private final ConfirmationTokenRepository confirmationTokenRepository;
+	private final UserRepository userRepository;
+	private final CustomerService customerService;
+
+	@Value("${app.baseUrl}")
+	private String baseUrl;
+
+	public EmailManager(JavaMailSender javaMailSender, ConfirmationTokenRepository confirmationTokenRepository,
+			UserRepository userRepository, CustomerService customerService) {
+		this.javaMailSender = javaMailSender;
+		this.confirmationTokenRepository = confirmationTokenRepository;
+		this.userRepository = userRepository;
+		this.customerService = customerService;
+	}
+
+	@Override
+	public void sendEmail(User user) throws UnsupportedEncodingException, MessagingException {
+
+		String token = UUID.randomUUID().toString();
+		EmailConfirmationToken emailConfirmationToken = new EmailConfirmationToken(token, user);
+		confirmationTokenRepository.save(emailConfirmationToken);
+
+		String toAddress = user.getEmail();
+		String fromAddress = "gsgalatasaray086@gmail.com";
+		String senderName = "Biricik Otomotiv";
+		String subject = "Please verify your registration";
+		String content = "Dear [[name]],<br>" + "Please click the link below to verify your registration:<br>"
+				+ "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>" + "Thank you,<br>" + "Biricik Ticaret.";
+
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		helper.setFrom(fromAddress, senderName);
+		helper.setTo(toAddress);
+		helper.setSubject(subject);
+
+		content = content.replace("[[name]]", user.getUsername());
+		String verifyURL = baseUrl + "/api/v1/auth/confirm-account?token="
+				+ emailConfirmationToken.getConfirmationToken();
+		content = content.replace("[[URL]]", verifyURL);
+		helper.setText(content, true);
+
+		javaMailSender.send(message);
+
+	}
+
+	@Override
+	public String confirmEmail(String confirmationToken) {
+		EmailConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken).get();
+
+		if (token != null) {
+			User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail()).get();
+			user.setEmailVerified(true);
+			userRepository.save(user);
+			return "Email verified successfully!";
+		}
+
+		return "Error: Couldn't verify email";
+
+	}
+
+	@Override
+	public void sendEmailForAdmin(SendEmailAdminRequest sendEmailAdminRequest) {
+
+		MimeMessage message = javaMailSender.createMimeMessage();
+
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			helper.setTo("serhatbiricik023@gmail.com");
+			helper.setFrom(sendEmailAdminRequest.getName());
+			helper.setSubject(sendEmailAdminRequest.getEmail());
+			helper.setText(sendEmailAdminRequest.getContent(), true);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		javaMailSender.send(message);
+
+	}
+
+	@Override
+	public void sendEmailForPayment(int userId ) {
+		
+		Customer user = customerService.findById(userId).get();
+		String body = generateBody();
+		MimeMessage message = javaMailSender.createMimeMessage();
+	
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			helper.setTo(user.getEmail());
+			helper.setFrom("Biricik Otomotiv");	
+			helper.setSubject("YOUR ORDER");
+			helper.setText(body, true);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		javaMailSender.send(message);
+		
+		
+	}
+
+	private String generateBody() {
+		StringBuilder bodyBuilder = new StringBuilder();
+
+		    bodyBuilder.append("Merhaba,\n\n");
+		    bodyBuilder.append("Bu e-postayı aldığınız için teşekkür ederiz. Aşağıdaki ürünleri başarıyla satın aldığınızı bildirmek istiyoruz:\n\n");
+
+		    for (int i = 0; i < products.size(); i++) {
+		        PurchaseRequest.Product product = products.get(i);
+		        bodyBuilder.append("Ürün ").append(i + 1).append(":\n");
+		        bodyBuilder.append("Ürün Adı: ").append(product.getName()).append("\n");
+		        bodyBuilder.append("Ürün Fiyatı: ").append(product.getPrice()).append("\n\n");
+		    }
+
+		    bodyBuilder.append("Satın Alma Tarihi: ").append(purchaseDate).append("\n\n");
+		    bodyBuilder.append("Ödeme işlemi [Ödeme Yöntemi] yöntemiyle gerçekleştirilmiştir.\n\n");
+		    bodyBuilder.append("Siparişiniz en kısa sürede hazırlanacak ve kargoya verilecektir. Siparişinizin durumu hakkında daha fazla bilgi almak isterseniz, hesabınıza giriş yapabilir ve sipariş takibi bölümünden güncel durumu kontrol edebilirsiniz.\n\n");
+		    bodyBuilder.append("Herhangi bir sorunuz veya endişeniz varsa, lütfen bize ulaşmaktan çekinmeyin. Yardımcı olmaktan mutluluk duyarız.\n\n");
+		    bodyBuilder.append("Teşekkürler,\n");
+		    bodyBuilder.append("[Şirket Adı]");
+
+		    String body = bodyBuilder.toString();
+		return body;
+	}
+
+}

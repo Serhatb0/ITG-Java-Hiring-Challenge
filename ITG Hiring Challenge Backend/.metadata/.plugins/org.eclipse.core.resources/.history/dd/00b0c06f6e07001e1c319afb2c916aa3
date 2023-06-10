@@ -1,0 +1,23 @@
+package com.biricik.automotive.business.requests.addressRequest;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
+@Data
+public class CreateAddressRequest {
+
+	@NotBlank
+	private int customerId;
+	@NotBlank
+	private int districtId;
+	@NotBlank
+	private int cityId;
+	@NotBlank
+	private String fullAddress;
+	@NotBlank
+	private String addressTitle;
+	@NotBlank
+	private String phoneNumber;
+	@NotBlank
+	private String identityNumber;
+}

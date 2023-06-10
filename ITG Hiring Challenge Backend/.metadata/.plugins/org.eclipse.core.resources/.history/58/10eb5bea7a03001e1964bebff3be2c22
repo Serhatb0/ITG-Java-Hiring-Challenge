@@ -1,0 +1,22 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.requests.orderRequest.CreateOrderRequest;
+import com.biricik.ecommerce.business.responses.orderResponses.FindByCustomerIdOrderResponse;
+import com.biricik.ecommerce.business.responses.orderResponses.FindByIdOrderResponse;
+
+
+
+public interface OrderService {
+	
+	
+	public void createOrder(CreateOrderRequest createOrderRequest,String discountCode);
+
+	public List<FindByCustomerIdOrderResponse> findByCustomerId(int customerId);
+
+	public FindByIdOrderResponse findById(int id);
+	
+
+
+}

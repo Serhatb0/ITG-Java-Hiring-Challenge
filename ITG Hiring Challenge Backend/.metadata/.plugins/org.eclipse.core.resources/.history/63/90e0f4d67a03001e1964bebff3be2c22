@@ -1,0 +1,23 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import com.biricik.ecommerce.business.requests.PaginatedRequest;
+import com.biricik.ecommerce.business.requests.couponRequest.CreateCouponRequest;
+import com.biricik.ecommerce.business.requests.couponRequest.UpdateCouponRequest;
+import com.biricik.ecommerce.business.responses.PaginatedGenericResponse;
+import com.biricik.ecommerce.business.responses.couponResponses.CreateCouponResponse;
+import com.biricik.ecommerce.business.responses.couponResponses.GetAllCouponResponse;
+import com.biricik.ecommerce.business.responses.couponResponses.UpdateCouponResponse;
+import com.biricik.ecommerce.model.Coupon;
+
+public interface CouponService {
+	
+		
+	public CreateCouponResponse addCoupon(CreateCouponRequest  createCouponRequest);
+	
+	public UpdateCouponResponse updateCoupon(UpdateCouponRequest updateCouponRequest);
+	
+	public PaginatedGenericResponse<GetAllCouponResponse>  getAllCoupon(PaginatedRequest paginatedRequest);
+
+	public Coupon findByCode(String code);
+
+}

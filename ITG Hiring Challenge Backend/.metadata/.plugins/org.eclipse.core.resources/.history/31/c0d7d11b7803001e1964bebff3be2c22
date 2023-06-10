@@ -1,0 +1,19 @@
+package com.biricik.ecommerce.business.requests.shoppingCartRequest;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateShoppingCartRequest {
+
+	
+	private int customerId;
+	
+	private int productId;
+	
+	private int quantity;
+	
+
+	
+}

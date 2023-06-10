@@ -1,0 +1,17 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import com.biricik.ecommerce.business.requests.authRequest.LoginRequest;
+import com.biricik.ecommerce.business.requests.authRequest.RefreshTokenRequest;
+import com.biricik.ecommerce.business.requests.authRequest.RegisterRequest;
+import com.biricik.ecommerce.business.responses.authResponses.LoginResponse;
+import com.biricik.ecommerce.business.responses.authResponses.RefreshTokenResponse;
+
+public interface AuthService {
+	
+	LoginResponse login(LoginRequest loginRequest);
+	
+	String registerUser(RegisterRequest registerRequest);
+	
+	public RefreshTokenResponse refershToken(RefreshTokenRequest refreshTokenRequest);
+
+}

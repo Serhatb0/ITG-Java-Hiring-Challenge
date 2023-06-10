@@ -1,0 +1,191 @@
+[
+	{
+		"id": 1,
+		"name": "Product image",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682521822/product-1_wuhnbj.jpg",
+		"size": 10000,
+		"product": {
+			"id": 2,
+			"name": "Nike Air Max 270",
+			"description": "Men's Running Shoe, Black/Anthracite/White",
+			"price": 150.00,
+			"quantity": 30,
+			"category": {
+				"id": 1,
+				"name": "Motor Parçaları"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Bosch"
+			}
+		}
+	},
+	{
+		"id": 2,
+		"name": "Product image 2",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526722/product-9_ibr3at.jpg",
+		"size": 10000,
+		"product": {
+			"id": 1,
+			"name": "Samsung Galaxy S21",
+			"description": "6.2 inch, 128GB, Phantom Gray",
+			"price": 799.99,
+			"quantity": 20,
+			"category": {
+				"id": 1,
+				"name": "Motor Parçaları"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Bosch"
+			}
+		}
+	},
+	{
+		"id": 3,
+		"name": "Product image 3",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526722/product-10_dqhhfh.jpg",
+		"size": 10000,
+		"product": {
+			"id": 3,
+			"name": "Apple MacBook Air",
+			"description": "13-inch, 512GB SSD, Space Gray",
+			"price": 1299.99,
+			"quantity": 15,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Apple"
+			}
+		}
+	},
+	{
+		"id": 4,
+		"name": "Product image 4",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526721/product-14_juicbq.jpg",
+		"size": 10000,
+		"product": {
+			"id": 5,
+			"name": "Iphone 14 pro",
+			"description": "13-inch, 512GB SSD, Space Gray",
+			"price": 2000,
+			"quantity": 8,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Apple"
+			}
+		}
+	},
+	{
+		"id": 5,
+		"name": "Product image 5",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526722/product-11_har1jz.jpg",
+		"size": 10000,
+		"product": {
+			"id": 4,
+			"name": "Apple MacBook Air 2",
+			"description": "13-inch, 512GB SSD, Space Gray",
+			"price": 1800.99,
+			"quantity": 15,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Apple"
+			}
+		}
+	},
+	{
+		"id": 6,
+		"name": "Product image 6",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526721/product-3_bjqwde.jpg",
+		"size": 10000,
+		"product": {
+			"id": 6,
+			"name": "Samsung Galaxy S3 mini",
+			"description": "6.2 inch, 128GB, Phantom Gray",
+			"price": 300,
+			"quantity": 5,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Samsung"
+			}
+		}
+	},
+	{
+		"id": 7,
+		"name": "Product image 6",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526721/product-4_japvhk.jpg",
+		"size": 10000,
+		"product": {
+			"id": 6,
+			"name": "Samsung Galaxy S3 mini",
+			"description": "6.2 inch, 128GB, Phantom Gray",
+			"price": 300,
+			"quantity": 5,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 1,
+				"name": "Samsung"
+			}
+		}
+	},
+	{
+		"id": 8,
+		"name": "Product image 5",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526721/product-6_tzmjhg.jpg",
+		"size": 10000,
+		"product": {
+			"id": 4,
+			"name": "Apple MacBook Air 2",
+			"description": "13-inch, 512GB SSD, Space Gray",
+			"price": 1800.99,
+			"quantity": 15,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Apple"
+			}
+		}
+	},
+	{
+		"id": 9,
+		"name": "Product image 5",
+		"url": "https://res.cloudinary.com/dmeviw9q7/image/upload/v1682526722/product-5_jafs3f.jpg",
+		"size": 10000,
+		"product": {
+			"id": 4,
+			"name": "Apple MacBook Air 2",
+			"description": "13-inch, 512GB SSD, Space Gray",
+			"price": 1800.99,
+			"quantity": 15,
+			"category": {
+				"id": 1,
+				"name": "Electronics"
+			},
+			"brand": {
+				"id": 3,
+				"name": "Apple"
+			}
+		}
+	}
+]

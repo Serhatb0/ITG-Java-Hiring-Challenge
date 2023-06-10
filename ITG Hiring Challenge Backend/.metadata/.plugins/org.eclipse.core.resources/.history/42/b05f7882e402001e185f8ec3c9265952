@@ -1,0 +1,5 @@
+package com.biricik.ecommerce.core.utilities;
+
+public enum MessageStatus {
+	ERRORS, SUCCESS
+}

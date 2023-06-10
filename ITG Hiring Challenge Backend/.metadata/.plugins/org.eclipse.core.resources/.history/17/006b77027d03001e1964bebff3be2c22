@@ -1,0 +1,125 @@
+package com.biricik.automotive.bootstrapping;
+
+import java.io.File;
+import java.util.List;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.biricik.automotive.model.Brand;
+import com.biricik.automotive.model.Category;
+import com.biricik.automotive.model.City;
+import com.biricik.automotive.model.Country;
+import com.biricik.automotive.model.District;
+import com.biricik.automotive.model.ERole;
+import com.biricik.automotive.model.Image;
+import com.biricik.automotive.model.Product;
+import com.biricik.automotive.model.Role;
+import com.biricik.automotive.repository.BrandRepository;
+import com.biricik.automotive.repository.CategoryRepository;
+import com.biricik.automotive.repository.CityRepository;
+import com.biricik.automotive.repository.CountryRepository;
+import com.biricik.automotive.repository.CustomerRepository;
+import com.biricik.automotive.repository.DistrictRepository;
+import com.biricik.automotive.repository.ImageRepository;
+import com.biricik.automotive.repository.ProductRepository;
+import com.biricik.automotive.repository.RoleRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Component
+public class BootstrapData implements CommandLineRunner {
+
+	private final CategoryRepository categoryRepository;
+	private final ProductRepository productRepository;
+	private final CountryRepository countryRepository;
+	private final RoleRepository roleRepository;
+	private final BrandRepository brandRepository;
+	private final ImageRepository imageRepository;
+	private final CustomerRepository customerRepository;
+	private final CityRepository cityRepository;
+	private final DistrictRepository districtRepository;
+
+	public BootstrapData(CategoryRepository categoryRepository, ProductRepository productRepository,
+			CountryRepository countryRepository, RoleRepository roleRepository, BrandRepository brandRepository,
+			ImageRepository imageRepository, CustomerRepository customerRepository, CityRepository cityRepository,
+			DistrictRepository districtRepository) {
+		this.categoryRepository = categoryRepository;
+		this.productRepository = productRepository;
+		this.countryRepository = countryRepository;
+		this.roleRepository = roleRepository;
+		this.brandRepository = brandRepository;
+		this.imageRepository = imageRepository;
+		this.customerRepository = customerRepository;
+		this.cityRepository = cityRepository;
+		this.districtRepository = districtRepository;
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		roleRepository.save(new Role(0, ERole.ROLE_USER));
+		roleRepository.save(new Role(0, ERole.ROLE_ADMIN));
+
+		ClassLoader classLoader = getClass().getClassLoader();
+		File categoryFile = new File(classLoader.getResource("data/categories.json").getFile());
+		File productFile = new File(classLoader.getResource("data/products.json").getFile());
+		File brandFile = new File(classLoader.getResource("data/brands.json").getFile());
+		File imageFile = new File(classLoader.getResource("data/images.json").getFile());
+		File countryFile = new File(classLoader.getResource("data/country.json").getFile());
+		File citiesFile = new File(classLoader.getResource("data/cities.json").getFile());
+		File districtsFile = new File(classLoader.getResource("data/districts.json").getFile());
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		List<Category> categories = objectMapper.readValue(categoryFile, new TypeReference<List<Category>>() {
+		});
+
+		List<Image> images = objectMapper.readValue(imageFile, new TypeReference<List<Image>>() {
+		});
+
+		List<Brand> brands = objectMapper.readValue(brandFile, new TypeReference<List<Brand>>() {
+		});
+
+		List<Product> products = objectMapper.readValue(productFile, new TypeReference<List<Product>>() {
+		});
+		
+		List<Country> countries = objectMapper.readValue(countryFile, new TypeReference<List<Country>>() {
+		});
+		
+		List<City> cities = objectMapper.readValue(citiesFile, new TypeReference<List<City>>() {
+		});
+		
+		List<District> districts = objectMapper.readValue(districtsFile, new TypeReference<List<District>>() {
+		});
+
+		categoryRepository.saveAll(categories);
+
+		brandRepository.saveAll(brands);
+		productRepository.saveAll(products);
+		imageRepository.saveAll(images);
+		countryRepository.saveAll(countries);
+		cityRepository.saveAll(cities);
+		districtRepository.saveAll(districts);
+
+//		Customer customer = new Customer();
+//		customer.setFirstName("Serhat");
+//		customer.setLastName("Biricik");
+//		customer.setEmail("biricikserhat47@gmail.com");
+//		customer.setUsername("serhatb0");
+//		customer.setPassword("12345678");
+//		customer.setEmailVerified(true);
+//		customerRepository.save(customer);
+
+//		Address address = new Address();
+//		address.setProvince("Mardin");
+//		address.setDistrict("Kızıltepe");
+//		address.setDoorNumber("12");
+//		address.setStreet("Bahçelievler sk.");
+//		address.setFullAddress("Mardin Kızıltepe Bahçelievler no:42");
+//		address.setPostCode("47400");
+//		address.setUser(customer);
+//		addressRepository.save(address);
+
+	}
+
+}

@@ -1,0 +1,49 @@
+package com.biricik.automotive.controllers;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biricik.automotive.business.abstracts.ShoppingCartService;
+import com.biricik.automotive.business.requests.couponRequest.CouponApplyRequest;
+import com.biricik.automotive.business.requests.shoppingCartRequest.CreateShoppingCartRequest;
+import com.biricik.automotive.business.responses.couponResponses.CouponApplyResponse;
+import com.biricik.automotive.business.responses.shoppingCartResponses.CreateShoppingCartResponse;
+import com.biricik.automotive.business.responses.shoppingCartResponses.FindByCustomerIdShoppingCartResponse;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/v1")
+@CrossOrigin
+public class ShoppingCartController {
+
+	private final ShoppingCartService shoppingCartService;
+
+
+	public ShoppingCartController(ShoppingCartService shoppingCartService) {
+		this.shoppingCartService = shoppingCartService;
+	}
+
+	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/shopping-carts")
+	public CreateShoppingCartResponse addShoppingCart(@RequestBody CreateShoppingCartRequest createShoppingCartRequest) {
+		return this.shoppingCartService.addShoppingCart(createShoppingCartRequest);
+	}
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/shopping-carts") 
+	public FindByCustomerIdShoppingCartResponse findByCustomerId(@RequestParam int customerId){
+		return this.shoppingCartService.findByCustomerId(customerId);
+	}
+	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/apply-shopping-carts")
+	public CouponApplyResponse addShoppingCart(@Valid @RequestBody CouponApplyRequest couponApplyRequest) {
+		return this.shoppingCartService.applyCouponForShoppingCart(couponApplyRequest);
+	}
+
+}

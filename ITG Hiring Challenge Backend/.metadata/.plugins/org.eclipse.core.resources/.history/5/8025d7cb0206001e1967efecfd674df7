@@ -1,0 +1,26 @@
+package com.biricik.automotive.business.responses.authResponses;
+
+import java.util.List;
+
+import com.biricik.automotive.model.Role;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class GetAllLockedAccountsResponse {
+	
+	private String username;
+
+	
+
+	private String email;
+	
+	private int failedLoginAttempts;
+	
+	 List<Role> roles;
+
+}

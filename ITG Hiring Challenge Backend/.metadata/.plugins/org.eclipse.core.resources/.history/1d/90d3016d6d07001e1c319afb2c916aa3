@@ -1,0 +1,9 @@
+{
+	"errors": {
+		"0001": "coupon has expired",
+		"0002": "coupon not valid",
+	},
+	"success": {
+		"0001": "coupon successfully applied"
+	}
+}

@@ -1,0 +1,24 @@
+package com.biricik.automotive.business.requests;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PaginatedRequest {
+
+	
+	private int size;
+	private int page;
+	
+//	private final static int DEFAULT_SIZE = 20;
+//	
+//	public PaginatedRequest(int size,int page) {
+//		this.size = size <= 0 ? DEFAULT_SIZE : size;
+//		this.page = page;
+//	}
+	
+	
+}

@@ -1,0 +1,308 @@
+package com.biricik.automotive.business.concretes;
+
+import java.math.BigDecimal;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CargoService;
+import com.biricik.automotive.business.abstracts.CreditCardService;
+import com.biricik.automotive.business.abstracts.CustomerService;
+import com.biricik.automotive.business.abstracts.EmailService;
+import com.biricik.automotive.business.abstracts.OrderService;
+import com.biricik.automotive.business.abstracts.PaymentService;
+import com.biricik.automotive.business.abstracts.ProductService;
+import com.biricik.automotive.business.abstracts.ShoppingCartItemService;
+import com.biricik.automotive.business.requests.orderRequest.CreateOrderRequest;
+import com.biricik.automotive.business.requests.paymentRequest.PaymentRequest;
+import com.biricik.automotive.model.CreditCard;
+import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.model.ShoppingCart;
+import com.biricik.automotive.model.ShoppingCartItem;
+import com.iyzipay.Options;
+import com.iyzipay.model.Address;
+import com.iyzipay.model.BasketItem;
+import com.iyzipay.model.BasketItemType;
+import com.iyzipay.model.Buyer;
+import com.iyzipay.model.CheckoutForm;
+import com.iyzipay.model.CheckoutFormInitialize;
+import com.iyzipay.model.Currency;
+import com.iyzipay.model.Locale;
+import com.iyzipay.model.PaymentCard;
+import com.iyzipay.model.PaymentGroup;
+import com.iyzipay.request.CreateCheckoutFormInitializeRequest;
+import com.iyzipay.request.CreatePaymentRequest;
+import com.iyzipay.request.RetrieveCheckoutFormRequest;
+
+@Service
+public class PaymentManager implements PaymentService {
+
+	private final Options options;
+	private final CustomerService customerService;
+	private final EmailService emailService;
+	private final OrderService orderService;
+	private final ShoppingCartItemService shoppingCartItemService;
+	private final ProductService productService;
+	private final CreditCardService creditCardService;
+	private final CargoService cargoService;
+
+	@Value("${app.baseUrl}")
+	private String baseUrl;
+
+	@Value("${app.iyzico.redirectUri}")
+	private String redirectUri;
+
+	public PaymentManager(Options options, CustomerService customerService, OrderService orderService,
+			ShoppingCartItemService shoppingCartItemService, ProductService productService, EmailService emailService,
+			CreditCardService creditCardService, CargoService cargoService) {
+		this.options = options;
+		this.customerService = customerService;
+		this.emailService = emailService;
+		this.orderService = orderService;
+		this.shoppingCartItemService = shoppingCartItemService;
+		this.productService = productService;
+		this.creditCardService = creditCardService;
+		this.cargoService = cargoService;
+	}
+
+	@Override
+	public ResponseEntity<?> checkout(PaymentRequest paymentRequest, String ip) {
+
+		Customer customer = customerService.findById(paymentRequest.getCustomerId());
+
+		ShoppingCart shoppingCart = customer.getShoppingCart();
+
+		com.biricik.automotive.model.Address address = null;
+
+		if (paymentRequest.getAddressId() != 0) {
+			address = customer.getAddresses().stream().filter(item -> item.getId() == paymentRequest.getAddressId())
+					.findFirst().get();
+
+		}
+
+		if (paymentRequest.getCreditCartId() != 0) {
+			return checkoutPaymentRequest(paymentRequest, ip, customer, shoppingCart, address,
+					paymentRequest.getCreditCartId());
+		} else {
+			return checkoutFormInitialize(paymentRequest, ip, customer, shoppingCart, address);
+		}
+
+	}
+
+	private ResponseEntity<?> checkoutFormInitialize(PaymentRequest paymentRequest, String ip, Customer customer,
+			ShoppingCart shoppingCart, com.biricik.automotive.model.Address address) {
+		CreateCheckoutFormInitializeRequest request = new CreateCheckoutFormInitializeRequest();
+
+		request.setLocale(Locale.TR.getValue());
+		request.setConversationId(String.valueOf(customer.getId()));
+		request.setPrice(shoppingCart.getTotalAmount());
+		request.setPaidPrice(paymentRequest.getTotalAmount());
+		request.setCurrency(Currency.TRY.name());
+		request.setBasketId(String.valueOf(shoppingCart.getId()));
+		request.setPaymentGroup(PaymentGroup.PRODUCT.name());
+		if (paymentRequest.getDiscountCode() == null) {
+			request.setCallbackUrl(baseUrl + "/api/v1/paymnets/retrieveCheckoutRequest");
+		} else {
+			request.setCallbackUrl(baseUrl + "/api/v1/paymnets/retrieveCheckoutRequest?discountCode="
+					+ paymentRequest.getDiscountCode());
+		}
+
+		List<Integer> enabledInstallments = new ArrayList<Integer>();
+		enabledInstallments.add(2);
+		enabledInstallments.add(3);
+		enabledInstallments.add(6);
+		enabledInstallments.add(9);
+		request.setEnabledInstallments(enabledInstallments);
+
+		Buyer buyer = new Buyer();
+		buyer.setId(String.valueOf(customer.getId()));
+		buyer.setName(customer.getFirstName());
+		buyer.setSurname(customer.getLastName());
+		buyer.setEmail(customer.getEmail());
+		buyer.setIdentityNumber("74300864791");
+		buyer.setRegistrationAddress(address.getFullAddress());
+		buyer.setIp(ip);
+		buyer.setCity(address.getCity().getName());
+		buyer.setCountry("Turkey");
+		// buyer.setZipCode("34732");
+		request.setBuyer(buyer);
+
+		Address shippingAddress = new Address();
+		shippingAddress.setContactName(customer.getFirstName());
+		shippingAddress.setCity(address.getCity().getName());
+		shippingAddress.setCountry("Turkey");
+		shippingAddress.setAddress(address.getFullAddress());
+		shippingAddress.setZipCode(address.getCity().getPostalCode());
+		request.setShippingAddress(shippingAddress);
+
+		Address billingAddress = new Address();
+		billingAddress.setContactName(customer.getFirstName());
+		billingAddress.setCity(address.getCity().getName());
+		billingAddress.setCountry("Turkey");
+		billingAddress.setAddress(address.getFullAddress());
+		billingAddress.setZipCode(address.getCity().getPostalCode());
+		request.setBillingAddress(billingAddress);
+
+		List<BasketItem> basketItems = new ArrayList<BasketItem>();
+
+		for (ShoppingCartItem shoppingCartItem : shoppingCart.getShoppingCartItems()) {
+			BasketItem firstBasketItem = new BasketItem();
+			firstBasketItem.setId(String.valueOf(shoppingCartItem.getId()));
+			firstBasketItem.setName(shoppingCartItem.getProduct().getName());
+			firstBasketItem.setCategory1(shoppingCartItem.getProduct().getCategory().getName());
+			firstBasketItem.setItemType(BasketItemType.PHYSICAL.name());
+			firstBasketItem.setPrice(shoppingCartItem.getProduct().getPrice()
+					.multiply(BigDecimal.valueOf(shoppingCartItem.getQuantity())));
+			basketItems.add(firstBasketItem);
+
+		}
+		request.setBasketItems(basketItems);
+
+		CheckoutFormInitialize checkoutFormInitialize = CheckoutFormInitialize.create(request, options);
+
+		return ResponseEntity.ok(checkoutFormInitialize);
+	}
+
+	private ResponseEntity<?> checkoutPaymentRequest(PaymentRequest paymentRequest, String ip, Customer customer,
+			ShoppingCart shoppingCart, com.biricik.automotive.model.Address address, int creditCartId) {
+
+		CreditCard creditCard = creditCardService.findById(creditCartId);
+
+		CreatePaymentRequest request = new CreatePaymentRequest();
+
+		request.setLocale(Locale.TR.getValue());
+		request.setConversationId(String.valueOf(customer.getId()));
+		request.setPrice(shoppingCart.getTotalAmount());
+		request.setPaidPrice(paymentRequest.getTotalAmount());
+		request.setCurrency(Currency.TRY.name());
+		request.setBasketId(String.valueOf(shoppingCart.getId()));
+		request.setPaymentGroup(PaymentGroup.PRODUCT.name());
+
+		PaymentCard paymentCard = new PaymentCard();
+		paymentCard.setCardHolderName(creditCard.getCardHoldername());
+		paymentCard.setCardNumber(creditCard.getCardNumber());
+		paymentCard.setExpireMonth(creditCard.getExpireMonth());
+		paymentCard.setExpireYear(creditCard.getExpireYear());
+		paymentCard.setCvc(creditCard.getCvc());
+		request.setPaymentCard(paymentCard);
+
+		Buyer buyer = new Buyer();
+		buyer.setId(String.valueOf(customer.getId()));
+		buyer.setName(customer.getFirstName());
+		buyer.setSurname(customer.getLastName());
+		buyer.setEmail(customer.getEmail());
+		buyer.setIdentityNumber("74300864791");
+		buyer.setRegistrationAddress(address.getFullAddress());
+		buyer.setIp(ip);
+		buyer.setCity(address.getCity().getName());
+		buyer.setCountry("Turkey");
+		request.setBuyer(buyer);
+
+		Address shippingAddress = new Address();
+		shippingAddress.setContactName(customer.getFirstName());
+		shippingAddress.setCity(address.getCity().getName());
+		shippingAddress.setCountry("Turkey");
+		shippingAddress.setAddress(address.getFullAddress());
+		shippingAddress.setZipCode(address.getCity().getPostalCode());
+		request.setShippingAddress(shippingAddress);
+
+		Address billingAddress = new Address();
+		billingAddress.setContactName(customer.getFirstName());
+		billingAddress.setCity(address.getCity().getName());
+		billingAddress.setCountry("Turkey");
+		billingAddress.setAddress(address.getFullAddress());
+		billingAddress.setZipCode(address.getCity().getPostalCode());
+		request.setBillingAddress(billingAddress);
+
+		List<BasketItem> basketItems = new ArrayList<BasketItem>();
+
+		for (ShoppingCartItem shoppingCartItem : shoppingCart.getShoppingCartItems()) {
+			BasketItem firstBasketItem = new BasketItem();
+			firstBasketItem.setId(String.valueOf(shoppingCartItem.getId()));
+			firstBasketItem.setName(shoppingCartItem.getProduct().getName());
+			firstBasketItem.setCategory1(shoppingCartItem.getProduct().getCategory().getName());
+			firstBasketItem.setItemType(BasketItemType.PHYSICAL.name());
+			firstBasketItem.setPrice(shoppingCartItem.getProduct().getPrice()
+					.multiply(BigDecimal.valueOf(shoppingCartItem.getQuantity())));
+			basketItems.add(firstBasketItem);
+
+		}
+		request.setBasketItems(basketItems);
+		
+		
+		emailService.sendEmailForPayment(shoppingCart.getId());
+
+		productService.changeProductQuantity(shoppingCart.getId());
+
+		CreateOrderRequest createOrderRequest = new CreateOrderRequest(shoppingCart.getId());
+		int orderId = orderService.createOrder(createOrderRequest, paymentRequest.getDiscountCode());
+		cargoService.createCargo(shoppingCart.getId(), orderId);
+		shoppingCartItemService.resetShoppingCartItem(shoppingCart.getId());
+
+//		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+//				.location(URI.create(redirectUri + "/tr/paymentsuccessful")).build();
+//		if (paymentRequest.getDiscountCode() == null) {
+//			return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+//					.location(URI.create(
+//							baseUrl + "/api/v1/paymnets/retrievePaymenyRequest?shoppingCartId=" + shoppingCart.getId()))
+//					.build();
+//		} else {
+//			return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+//					.location(URI.create(baseUrl + "/api/v1/paymnets/retrievePaymenyRequest?shoppingCartId="
+//							+ shoppingCart.getId() + "discountCode=" + paymentRequest.getDiscountCode()))
+//					.build();
+//		}
+
+	}
+
+	@Override
+	public ResponseEntity<?> retrieveCheckoutRequest(String token, String discountCode) {
+		RetrieveCheckoutFormRequest request = new RetrieveCheckoutFormRequest();
+		request.setLocale(Locale.TR.getValue());
+		request.setToken(token);
+
+		CheckoutForm checkoutForm = CheckoutForm.retrieve(request, options);
+		int shoppingCartId = Integer.valueOf(checkoutForm.getBasketId());
+		if (checkoutForm.getStatus().equals("success")) {
+
+			emailService.sendEmailForPayment(shoppingCartId);
+
+			productService.changeProductQuantity(shoppingCartId);
+
+			CreateOrderRequest createOrderRequest = new CreateOrderRequest(shoppingCartId);
+			int orderId = orderService.createOrder(createOrderRequest, discountCode);
+			cargoService.createCargo(shoppingCartId, orderId);
+			shoppingCartItemService.resetShoppingCartItem(shoppingCartId);
+
+			return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+					.location(URI.create(redirectUri + "/tr/paymentsuccessful")).build();
+
+		}
+
+		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+				.location(URI.create(redirectUri + "/order?checkout=error")).build();
+	}
+
+//	@Override
+//	public ResponseEntity<?> retrievePaymenyRequest(int shoppingCartId, String discountCode) {
+//
+//		emailService.sendEmailForPayment(shoppingCartId);
+//
+//		productService.changeProductQuantity(shoppingCartId);
+//
+//		CreateOrderRequest createOrderRequest = new CreateOrderRequest(shoppingCartId);
+//		int orderId = orderService.createOrder(createOrderRequest, discountCode);
+//		cargoService.createCargo(shoppingCartId, orderId);
+//		shoppingCartItemService.resetShoppingCartItem(shoppingCartId);
+//
+//		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+//				.location(URI.create(redirectUri + "/tr/paymentsuccessful")).build();
+//
+//	}
+
+}

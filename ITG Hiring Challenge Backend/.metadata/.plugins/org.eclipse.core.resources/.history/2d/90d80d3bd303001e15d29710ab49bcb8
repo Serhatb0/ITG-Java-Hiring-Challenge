@@ -1,0 +1,5 @@
+package com.biricik.automotive.aspects;
+
+public class LoggingAspect {
+
+}

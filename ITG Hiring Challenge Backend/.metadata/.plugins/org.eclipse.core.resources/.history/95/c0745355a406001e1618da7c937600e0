@@ -1,0 +1,21 @@
+package com.biricik.automotive.business.requests.creditCardRequest;
+
+import jakarta.persistence.Column;
+
+public class CreateCreditCartRequest {
+	
+	
+	
+	private String cardAlias;
+	
+	
+	private String cardHoldername;
+	
+	private String cardNumber;
+	
+	private int expireMonth;
+	
+	private int expireYear;
+	
+
+}

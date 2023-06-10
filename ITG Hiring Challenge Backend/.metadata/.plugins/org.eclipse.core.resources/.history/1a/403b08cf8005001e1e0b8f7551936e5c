@@ -1,0 +1,17 @@
+package com.biricik.automotive.security;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+
+public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+	  @Autowired
+	    private UserDetailsService userDetailsService;
+
+	    @Override
+	    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+	        String username = request.getParameter("username");
+	        userDetailsService.incrementFailedLoginAttempts(username);
+
+	        super.onAuthenticationFailure(request, response, exception);
+	    }
+}

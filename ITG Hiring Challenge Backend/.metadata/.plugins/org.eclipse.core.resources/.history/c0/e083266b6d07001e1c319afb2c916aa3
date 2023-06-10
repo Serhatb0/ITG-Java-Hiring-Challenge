@@ -1,0 +1,11 @@
+{
+	"errors": {
+		"0001": "coupon has expired",
+		"0002": "coupon not valid",
+		"0003": "Username is already taken",
+		"0004": "Email is already in use!"
+	},
+	"success": {
+		"0001": "coupon successfully applied"
+	}
+}

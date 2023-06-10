@@ -1,0 +1,83 @@
+package com.biricik.automotive.model;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = "user_name"),
+		@UniqueConstraint(columnNames = "email") })
+@Entity
+@Data
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User extends ParentEntity {
+
+	@Column(name = "user_name")
+	private String username;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@Column(nullable = false)
+	private Boolean emailVerified = false;
+
+	@Column(name = "provider_id")
+	private String providerId;
+	
+	
+	@Column(name = "account_non_locked")
+	private boolean accountNonLocked;
+	
+	@Column(name = "failed_login_attempts")
+	private int failedLoginAttempts;
+
+	@Enumerated(EnumType.STRING)
+	private AuthProvider provider;
+
+	public User(String username, String password, String email) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.provider = AuthProvider.LOCAL;
+	}
+
+	@OneToMany(mappedBy = "user")
+	private List<Address> addresses;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<Role> roles = new ArrayList<>();
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "refreshtoken_id", referencedColumnName = "id")
+	public RefreshToken refreshToken;
+
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+	private EmailConfirmationToken emailConfirmationToken;
+
+}

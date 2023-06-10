@@ -1,0 +1,72 @@
+spring:
+  profiles:
+    active: dev
+ 
+  config:
+    import: optional:classpath:.env[.properties]
+  h2:
+   console.enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: gsgalatasaray086@gmail.com
+    password: kumprcguffrvqdxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+ 
+
+
+
+
+
+
+
+
+cloudinary:
+   cloud_name: dmeviw9q7
+   api_key: 687677614368629
+   api_secret: GHDwcBeEutUh5raKRpbgM6KsEzI
+app:
+  auth:
+      jwtSecret: biricikbiricik
+      jwtExpirationMs: 300000
+      jwtRefreshExpirationMs: 8640000 
+      
+  cors:
+    allowedOrigins: http://localhost:3000
+ 
+      
+
+
+
+  
+  iyzico:
+        apiKey: sandbox-uVSAq3gmcmrWMs47hMiA3Jv6XJwq3ec0
+        secretKey: sandbox-unvSUvBR3ZQ5WqikIioIP86A0dCcijkY     
+        baseUrl: https://sandbox-api.iyzipay.com
+        redirectUri: http://localhost:3000
+        
+        
+     
+
+  email_verifed_callbackurl: http://localhost:3000
+  baseUrl: http://localhost:8080    
+      
+      

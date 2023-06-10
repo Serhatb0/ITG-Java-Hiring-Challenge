@@ -1,0 +1,20 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.requests.brandRequest.CreateBrandRquest;
+import com.biricik.ecommerce.business.responses.brandResponses.CreateBrandResponse;
+import com.biricik.ecommerce.business.responses.brandResponses.FindBrandByCategoryIdResponse;
+import com.biricik.ecommerce.model.Brand;
+
+public interface BrandService {
+
+	
+	
+	List<FindBrandByCategoryIdResponse> findByCategoryId(int categoryID);
+
+	Brand findById(int brandId);
+
+	CreateBrandResponse addBrand(CreateBrandRquest createBrandRquest);
+	
+}

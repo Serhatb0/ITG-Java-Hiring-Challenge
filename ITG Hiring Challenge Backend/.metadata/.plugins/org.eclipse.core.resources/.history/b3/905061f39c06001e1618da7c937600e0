@@ -1,0 +1,32 @@
+package com.biricik.automotive.model;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "coupons")
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+public class CreditCard  extends ParentEntity{
+	
+	private String cardAlias;
+	
+	private String cardHoldername;
+	
+	private String cardNumber;
+	
+	private Date expireMonth;
+	
+
+}

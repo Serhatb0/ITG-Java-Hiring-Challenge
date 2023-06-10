@@ -1,0 +1,9 @@
+package com.biricik.automotive.exception;
+
+public class TokenRefreshException {
+
+	public TokenRefreshException(String refreshToken, String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

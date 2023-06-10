@@ -1,0 +1,17 @@
+{
+  "home": "Ana Sayfa",
+  "shop": "Magaza",
+  "contacts": "İletişim",
+  "login": "Giriş Yap",
+  "signin": "Kayıt Ol",
+  "delete-cart-item": "Ürün Silindi",
+  "error": "Beklenmedik bir hata oluştu",
+  "coupon-success": "Kupon Başarıyla  Uygulandı",
+  "payment-successful": "Ödeme Başarılı",
+  "cart-empty": "Sepet boş olamaz",
+  "login-admin": "ADMİN GİRİŞ",
+  "product-add": "Ürün Eklendi",
+  "account-open": "Hesap kilidi Başarıyla Açıldı",
+  "email-succes": "Email Başarıyla Gönderildi",
+  "order": "Siparişlerim"
+}

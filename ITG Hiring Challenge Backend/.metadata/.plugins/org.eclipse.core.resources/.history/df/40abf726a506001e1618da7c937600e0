@@ -1,0 +1,10 @@
+package com.biricik.automotive.business.abstracts;
+
+import com.biricik.automotive.business.requests.creditCardRequest.CreateCreditCartRequest;
+import com.biricik.automotive.business.responses.creditCardResponse.CreateCreditCartResponse;
+
+public interface CreditCardService {
+	
+	public CreateCreditCartResponse createCreditCart(CreateCreditCartRequest createCreditCartRequest);
+
+}

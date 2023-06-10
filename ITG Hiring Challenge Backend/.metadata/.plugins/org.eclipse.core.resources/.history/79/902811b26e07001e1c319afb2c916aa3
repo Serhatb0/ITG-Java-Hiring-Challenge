@@ -1,0 +1,20 @@
+package com.biricik.automotive.business.requests.shoppingCartRequest;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateShoppingCartRequest {
+
+	@NotBlank
+	private int customerId;
+	@NotBlank
+	private int productId;
+	@NotBlank
+	private int quantity;
+	
+
+	
+}

@@ -1,0 +1,176 @@
+package com.biricik.automotive.business.concretes;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.AuthService;
+import com.biricik.automotive.business.abstracts.EmailService;
+import com.biricik.automotive.business.abstracts.RefreshTokenService;
+import com.biricik.automotive.business.requests.authRequest.LoginRequest;
+import com.biricik.automotive.business.requests.authRequest.RefreshTokenRequest;
+import com.biricik.automotive.business.requests.authRequest.RegisterRequest;
+import com.biricik.automotive.business.responses.authResponses.GetAllLockedAccountsResponse;
+import com.biricik.automotive.business.responses.authResponses.LoginResponse;
+import com.biricik.automotive.business.responses.authResponses.RefreshTokenResponse;
+import com.biricik.automotive.business.rules.AuthRules;
+import com.biricik.automotive.config.AppProperties;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.exception.TokenRefreshException;
+import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.model.ERole;
+import com.biricik.automotive.model.RefreshToken;
+import com.biricik.automotive.model.Role;
+import com.biricik.automotive.model.User;
+import com.biricik.automotive.repository.CustomerRepository;
+import com.biricik.automotive.repository.RoleRepository;
+import com.biricik.automotive.repository.UserRepository;
+import com.biricik.automotive.security.UserDetailsImpl;
+import com.biricik.automotive.util.JwtUtils;
+
+import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
+
+@Service("authorization")
+public class AuthManager implements AuthService {
+
+	private final AuthenticationManager authenticationManager;
+
+	private final UserRepository userRepository;
+
+	private final RoleRepository roleRepository;
+
+	private final CustomerRepository customerRepository;
+
+	private final EmailService emailService;
+
+	private final AppProperties appProperties;
+
+	private final ModelMapperService modelMapperService;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	private final JwtUtils jwtUtils;
+
+	private final RefreshTokenService refreshTokenService;
+
+	private final AuthRules authRules;
+
+	public AuthManager(AuthenticationManager authenticationManager, UserRepository userRepository,
+			RoleRepository roleRepository, JwtUtils jwtUtils, RefreshTokenService refreshTokenService,
+			CustomerRepository customerRepository, EmailService emailService, AppProperties appProperties,
+			AuthRules authRules, ModelMapperService modelMapperService) {
+		this.authenticationManager = authenticationManager;
+		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
+		this.customerRepository = customerRepository;
+		this.emailService = emailService;
+		this.appProperties = appProperties;
+		this.modelMapperService = modelMapperService;
+		this.jwtUtils = jwtUtils;
+		this.refreshTokenService = refreshTokenService;
+		this.authRules = authRules;
+	}
+
+	@Transactional
+	@Override
+	public LoginResponse login(LoginRequest loginRequest) {
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+		String jwt = jwtUtils.generateJwtToken(userDetails);
+
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+
+		Customer customer = customerRepository.findByEmail(loginRequest.getEmail());
+
+		return new LoginResponse(customer.getId(), customer.getFirstName(), customer.getLastName(),
+				customer.getUsername(), customer.getEmail(), jwt, refreshToken.getToken(),
+				System.currentTimeMillis() + appProperties.getAuth().getJwtExpirationMs());
+
+	}
+
+	@Transactional
+	@Override
+	public String registerUser(RegisterRequest registerRequest) {
+
+		authRules.checkExistsEmail(registerRequest.getEmail());
+		authRules.checkExistsUsername(registerRequest.getUserName());
+
+		Customer customer = new Customer(registerRequest.getFirstName(), registerRequest.getLastName(),
+				registerRequest.getUserName(), passwordEncoder.encode(registerRequest.getPassword()),
+				registerRequest.getEmail());
+
+		List<Role> roles = new ArrayList<>();
+		roles.add(roleRepository.findByName(ERole.ROLE_USER).get());
+
+		customer.setRoles(roles);
+		customerRepository.save(customer);
+		try {
+			emailService.sendEmail(customer);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "Verify email by the link sent on your email address";
+
+	}
+
+	@Override
+	public RefreshTokenResponse refershToken(RefreshTokenRequest refreshTokenRequest) {
+		RefreshToken refreshToken = refreshTokenService.findByToken(refreshTokenRequest.getRefreshToken())
+				.map(refreshTokenService::verifyExpiration)
+				.orElseThrow(() -> new TokenRefreshException(refreshTokenRequest.getRefreshToken(),
+						"Refresh token is not in database!"));
+		User user = refreshToken.getUser();
+		String token = jwtUtils.generateTokenFromEmail(user.getEmail());
+
+		return new RefreshTokenResponse(token, refreshTokenRequest.getRefreshToken(),
+				System.currentTimeMillis() + appProperties.getAuth().getJwtExpirationMs());
+	}
+	
+	@Transactional
+	@Override
+	public void accountLockedOpen(int userId) {
+
+		User user = userRepository.findById(userId).get();
+
+		user.setAccountNonLocked(true);
+		user.setFailedLoginAttempts(0);
+
+		userRepository.save(user);
+
+	}
+
+	@Override
+	public List<GetAllLockedAccountsResponse> getAllLockedAccounts() {
+
+		List<User> users = userRepository.findByAccountNonLockedIsFalse();
+
+		List<GetAllLockedAccountsResponse> response = users.stream()
+				.map((user) -> modelMapperService.forResponse().map(user, GetAllLockedAccountsResponse.class))
+				.collect(Collectors.toList());
+		
+		
+		return response;
+	}
+
+}

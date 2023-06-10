@@ -1,0 +1,8 @@
+package com.biricik.automotive.business.rules;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CouponRules {
+
+}

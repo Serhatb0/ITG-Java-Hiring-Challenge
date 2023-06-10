@@ -1,0 +1,309 @@
+package com.biricik.automotive.business.concretes;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.biricik.automotive.business.abstracts.BrandService;
+import com.biricik.automotive.business.abstracts.CategoryService;
+import com.biricik.automotive.business.abstracts.ImageService;
+import com.biricik.automotive.business.abstracts.OrderItemService;
+import com.biricik.automotive.business.abstracts.ProductService;
+import com.biricik.automotive.business.abstracts.ShoppingCartService;
+import com.biricik.automotive.business.requests.productRequest.AddImageForProductRequest;
+import com.biricik.automotive.business.requests.productRequest.CreateProductRequest;
+import com.biricik.automotive.business.responses.PaginatedGenericResponse;
+import com.biricik.automotive.business.responses.productResponses.AddImageForProductResponse;
+import com.biricik.automotive.business.responses.productResponses.CreateProductReponse;
+import com.biricik.automotive.business.responses.productResponses.FindByBrandIdProductResponse;
+import com.biricik.automotive.business.responses.productResponses.FindByCategoryIdProductResponse;
+import com.biricik.automotive.business.responses.productResponses.FindByIdProductResponse;
+import com.biricik.automotive.business.responses.productResponses.GetAllProductResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Brand;
+import com.biricik.automotive.model.Category;
+import com.biricik.automotive.model.Image;
+import com.biricik.automotive.model.Product;
+import com.biricik.automotive.model.ShoppingCart;
+import com.biricik.automotive.model.ShoppingCartItem;
+import com.biricik.automotive.repository.ProductRepository;
+
+@Service
+public class ProductManager implements ProductService {
+
+	private final ProductRepository productRepository;
+	private final CategoryService categoryService;
+	private final ImageService imageService;
+	private final ShoppingCartService shoppingCartService;
+	private final OrderItemService orderItemService;
+	private final BrandService brandService;
+	private final ModelMapperService modelMapperService;
+
+	@Lazy
+	public ProductManager(ProductRepository productRepository, CategoryService categoryService,
+			ImageService imageService, ShoppingCartService shoppingCartService, OrderItemService orderItemService,
+			BrandService brandService, ModelMapperService modelMapperService) {
+		this.productRepository = productRepository;
+		this.categoryService = categoryService;
+		this.imageService = imageService;
+		this.shoppingCartService = shoppingCartService;
+		this.orderItemService = orderItemService;
+		this.brandService = brandService;
+		this.modelMapperService = modelMapperService;
+	}
+
+	@Override
+//	@PreAuthorize("hasRole('ADMIN')")
+	public CreateProductReponse addProduct(CreateProductRequest createProductRequest, MultipartFile file) {
+
+		Category category = modelMapperService.forRequest()
+				.map(categoryService.getById(createProductRequest.getCategoryId()), Category.class);
+
+		Brand brand = this.brandService.findById(createProductRequest.getBrandId());
+
+		List<Image> images = new ArrayList<>();
+
+		Product product = modelMapperService.forRequest().map(createProductRequest, Product.class);
+		this.productRepository.save(product);
+		if (file != null) {
+			images.add(imageService.uploadImage(file, product));
+		}
+		product.setImages(images);
+		product.setCategory(category);
+		product.setBrand(brand);
+		this.productRepository.save(product);
+
+		List<String> urls = Optional.ofNullable(product.getImages()).orElse(Collections.emptyList()).stream()
+				.map(image -> image.getUrl()).distinct().collect(Collectors.toList());
+
+		CreateProductReponse createProductReponse = modelMapperService.forResponse().map(product,
+				CreateProductReponse.class);
+		createProductReponse.setUrl(urls);
+		return createProductReponse;
+
+	}
+
+	@Override
+	public AddImageForProductResponse addImageForProduct(AddImageForProductRequest addImageForProductRequest,
+			MultipartFile file) {
+
+		Product product = this.productRepository.findById(addImageForProductRequest.getProductId()).get();
+
+		List<Image> images = product.getImages();
+		images.add(this.imageService.uploadImage(file, product));
+		product.setImages(images);
+
+		List<String> urls = Optional.ofNullable(product.getImages()).orElse(Collections.emptyList()).stream()
+				.map(image -> image.getUrl()).distinct().collect(Collectors.toList());
+
+		this.productRepository.save(product);
+
+		AddImageForProductResponse addImageForProductResponse = modelMapperService.forResponse().map(product, AddImageForProductResponse.class);
+		addImageForProductResponse.setUrl(urls);
+
+		return addImageForProductResponse;
+	}
+
+	@Override
+	public PaginatedGenericResponse<GetAllProductResponse> getAll(String keyword, int size, int page,
+			BigDecimal minPrice, BigDecimal maxPrice, Optional<String> sortDirection) {
+
+		Pageable pageable;
+		if (sortDirection.isPresent()) {
+			Sort sort = Sort.by(Sort.Direction.fromString(sortDirection.get()), "price");
+			pageable = PageRequest.of(page, size, sort);
+		} else {
+			pageable = PageRequest.of(page, size);
+		}
+
+		Page<Product> pageProduct = this.productRepository.findAll(keyword, minPrice, maxPrice, pageable);
+
+		List<GetAllProductResponse> getAllProductResponses = productMapper.productToGetAllProductResponses(pageProduct);
+
+		getAllProductResponses.stream().peek(response -> {
+			List<String> urls = pageProduct.getContent().stream().filter(product -> product.getId() == response.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+			response.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		return new PaginatedGenericResponse<GetAllProductResponse>(getAllProductResponses, pageProduct.getNumber(),
+				pageProduct.getSize(), pageProduct.getTotalElements(), pageProduct.getTotalPages());
+
+	}
+
+	@Override
+	public PaginatedGenericResponse<FindByBrandIdProductResponse> findByBrandId(String keyword, int brandId, int size,
+			int page, BigDecimal minPrice, BigDecimal maxPrice, Optional<String> sortDirection) {
+		Pageable pageable;
+		if (sortDirection.isPresent()) {
+			Sort sort = Sort.by(Sort.Direction.fromString(sortDirection.get()), "price");
+			pageable = PageRequest.of(page, size, sort);
+		} else {
+			pageable = PageRequest.of(page, size);
+		}
+
+		Page<Product> pageProduct = this.productRepository.findByBrandId(keyword, brandId, minPrice, maxPrice,
+				pageable);
+
+		List<FindByBrandIdProductResponse> response = productMapper.productToFindByBrandIdProductResponses(pageProduct);
+
+		response.stream().peek(item -> {
+			List<String> urls = pageProduct.getContent().stream().filter(product -> product.getId() == item.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+
+			item.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		return new PaginatedGenericResponse<FindByBrandIdProductResponse>(response, pageProduct.getNumber(),
+				pageProduct.getSize(), pageProduct.getTotalElements(), pageProduct.getTotalPages());
+
+	}
+
+	@Override
+	public PaginatedGenericResponse<FindByCategoryIdProductResponse> findByCategoryId(String keyword, int categoryId,
+			int size, int page, BigDecimal minPrice, BigDecimal maxPrice, Optional<String> sortDirection) {
+		Pageable pageable;
+		if (sortDirection.isPresent()) {
+			Sort sort = Sort.by(Sort.Direction.fromString(sortDirection.get()), "price");
+			pageable = PageRequest.of(page, size, sort);
+		} else {
+			pageable = PageRequest.of(page, size);
+		}
+
+		Page<Product> pageProduct = this.productRepository.findByCategoryId(keyword, categoryId, minPrice, maxPrice,
+				pageable);
+
+		List<FindByCategoryIdProductResponse> response = productMapper
+				.productToFindByCategoryIdProductResponses(pageProduct);
+
+		response.stream().peek(item -> {
+			List<String> urls = pageProduct.getContent().stream().filter(product -> product.getId() == item.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+
+			item.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		return new PaginatedGenericResponse<FindByCategoryIdProductResponse>(response, pageProduct.getNumber(),
+				pageProduct.getSize(), pageProduct.getTotalElements(), pageProduct.getTotalPages());
+
+	}
+
+	@Override
+	public FindByIdProductResponse findById(int productId) {
+
+		Product product = this.productRepository.findById(productId).get();
+
+		FindByIdProductResponse response = productMapper.productTofindByIdProductResponse(product);
+
+		List<String> imageUrl = product.getImages().stream().map(Image::getUrl).collect(Collectors.toList());
+
+		response.setUrl(imageUrl);
+
+		return response;
+
+	}
+
+	@Override
+	public void changeProductQuantity(int shoppingCartId) {
+
+		ShoppingCart shoppingCart = this.shoppingCartService.findById(shoppingCartId);
+
+		List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+
+		List<Product> products = shoppingCartItems.stream().map(item -> {
+			Product product = item.getProduct();
+			product.setQuantity(product.getQuantity() - item.getQuantity());
+			return product;
+		}).collect(Collectors.toList());
+
+		productRepository.saveAll(products);
+
+	}
+
+	@Override
+	public List<FindTopFiveProductResponse> findTopFiveProduct() {
+		List<Integer> productIds = orderItemService.findTopFiveProductIds();
+		List<Product> products;
+		List<FindTopFiveProductResponse> response;
+
+		if (!productIds.isEmpty()) {
+
+			products = productIds.stream().map(id -> {
+				Product product = productRepository.findById(id).get();
+				return product;
+			}).collect(Collectors.toList());
+			response = productMapper.productToFindTopFiveProductResponses(products);
+			response.stream().peek(item -> {
+				List<String> urls = products.stream().filter(product -> product.getId() == item.getId())
+						.flatMap(product -> product.getImages().stream().map(Image::getUrl))
+						.collect(Collectors.toList());
+
+				item.setUrl(urls);
+			}).collect(Collectors.toList());
+
+			return response;
+		} else {
+			products = productRepository.findFirstFive();
+			response = productMapper.productToFindTopFiveProductResponses(products);
+			response.stream().peek(item -> {
+				List<String> urls = products.stream().filter(product -> product.getId() == item.getId())
+						.flatMap(product -> product.getImages().stream().map(Image::getUrl))
+						.collect(Collectors.toList());
+
+				item.setUrl(urls);
+			}).collect(Collectors.toList());
+			return response;
+		}
+
+	}
+
+	@Override
+	public List<FindNewProductResponse> findNewProduct() {
+
+		List<Product> products = productRepository.findNewFiveProducts();
+
+		List<FindNewProductResponse> response = productMapper.productToFindNewProductResponse(products);
+		response.stream().peek(item -> {
+			List<String> urls = products.stream().filter(product -> product.getId() == item.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+
+			item.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		return response;
+
+	}
+
+	@Override
+	public List<FindNewProductResponse> findNewOrderFiveProduct() {
+		List<Integer> productIds = orderItemService.findNewOrderFiveProductIds();
+
+		List<Product> products = productIds.stream().map(id -> {
+			Product product = productRepository.findById(id).get();
+			return product;
+		}).collect(Collectors.toList());
+
+		List<FindNewProductResponse> response = productMapper.productToFindNewProductResponse(products);
+		response.stream().peek(item -> {
+			List<String> urls = products.stream().filter(product -> product.getId() == item.getId())
+					.flatMap(product -> product.getImages().stream().map(Image::getUrl)).collect(Collectors.toList());
+
+			item.setUrl(urls);
+		}).collect(Collectors.toList());
+
+		return response;
+
+	}
+
+}

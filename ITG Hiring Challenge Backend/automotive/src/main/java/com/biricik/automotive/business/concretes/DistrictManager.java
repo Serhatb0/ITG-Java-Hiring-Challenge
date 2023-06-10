@@ -1,0 +1,38 @@
+package com.biricik.automotive.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.DistrictService;
+import com.biricik.automotive.business.responses.addressResponses.FindByCityIdDistrictResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.District;
+import com.biricik.automotive.repository.DistrictRepository;
+
+@Service
+public class DistrictManager implements DistrictService {
+
+	private final DistrictRepository districtRepository;
+	private final ModelMapperService modelMapperService;
+
+	public DistrictManager(DistrictRepository districtRepository, ModelMapperService modelMapperService) {
+		this.districtRepository = districtRepository;
+		this.modelMapperService = modelMapperService;
+
+	}
+
+	@Override
+	public List<FindByCityIdDistrictResponse> findByCityId(int cityId) {
+
+		List<District> districts = districtRepository.findByCityId(cityId);
+
+		List<FindByCityIdDistrictResponse> response = districts.stream()
+				.map(district -> modelMapperService.forResponse().map(district, FindByCityIdDistrictResponse.class))
+				.collect(Collectors.toList());
+		return response;
+
+	}
+
+}

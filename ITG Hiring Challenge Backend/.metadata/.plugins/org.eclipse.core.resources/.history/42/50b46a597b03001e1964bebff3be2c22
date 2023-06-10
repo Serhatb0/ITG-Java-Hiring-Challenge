@@ -1,0 +1,48 @@
+package com.biricik.automotive.business.concretes;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CityService;
+import com.biricik.automotive.business.responses.addressResponses.FindByCountryIdCityResponse;
+import com.biricik.automotive.model.City;
+import com.biricik.automotive.repository.CityRepository;
+import com.biricik.ecommerce.business.mappers.AddressMapper;
+
+@Service
+public class CityManager implements CityService {
+
+	private final com.biricik.automotive.repository.CityRepository cityRepository;
+	private final AddressMapper addressMapper;
+
+	public CityManager(CityRepository cityRepository, AddressMapper addressMapper) {
+		this.cityRepository = cityRepository;
+		this.addressMapper = addressMapper;
+	}
+	
+	
+
+	@Override
+	public List<FindByCountryIdCityResponse> findByCountryId(int countryId) {
+		
+		List<City> cities = cityRepository.findByCountryId(countryId);
+		
+		List<FindByCountryIdCityResponse> response = addressMapper.cityToFindByCountryIdCityResponse(cities);
+		
+		return response;
+		
+		
+		
+		
+	}
+
+
+
+	@Override
+	public City findById(int cityId) {
+	
+		return cityRepository.findById(cityId).get();
+	}
+
+}

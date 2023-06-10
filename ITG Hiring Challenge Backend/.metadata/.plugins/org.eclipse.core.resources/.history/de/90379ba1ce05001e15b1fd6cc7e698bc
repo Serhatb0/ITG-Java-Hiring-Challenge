@@ -1,0 +1,20 @@
+package com.biricik.automotive.security;
+
+import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.event.AbstractAuthenticationFailureEvent;
+import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
+
+public class AuthenticationEvents {
+	@EventListener
+    public void onSuccess(AuthenticationSuccessEvent success) {
+		
+		System.out.println("Success Yakaladı");
+		System.out.println(success);
+    }
+
+    @EventListener
+    public void onFailure(AbstractAuthenticationFailureEvent failures) {
+    	System.out.println("Error Yakalandı");
+		System.out.println(failures);
+    }
+}

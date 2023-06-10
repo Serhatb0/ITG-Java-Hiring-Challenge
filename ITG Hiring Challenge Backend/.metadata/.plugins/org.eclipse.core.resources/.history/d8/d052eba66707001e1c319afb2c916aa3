@@ -1,0 +1,5 @@
+package com.biricik.automotive.validator.impl;
+
+public class UniqueEmailImpl {
+
+}

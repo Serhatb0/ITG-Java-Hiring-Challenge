@@ -1,0 +1,58 @@
+package com.biricik.ecommerce.model;
+
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "cargoes")
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+public class Cargo  extends ParentEntity{
+
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "order_id")
+	private Order order;
+	
+	@Column(nullable = false,name="sender_name")
+	private String senderName;
+	
+	@Column(nullable = false,name = "sender_address")
+	private String senderAddress;
+	
+	@Column(nullable = false,name = "sender_phone")
+	private String senderPhone;
+	
+	@Enumerated(EnumType.STRING)
+	private CargoStatus cargoStatus;
+	
+	@Column(name = "shipping_tracking_no")
+	private String shippingTrackingNo;
+	
+	@Column(name = "delivery_date")
+	private LocalDate deliveryDate;
+	
+//	 private BigDecimal cargoPrice;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
+	
+	
+} 

@@ -1,0 +1,19 @@
+package com.biricik.automotive.business.requests.categoryRequest;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class CreateCategoryRequest {
+
+	@NotBlank
+	@NotNull
+	@Size(min = 4,message = "{0001}")
+	private String name;
+	
+	private int brandId
+}

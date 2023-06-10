@@ -1,0 +1,17 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.requests.categoryRequest.CreateCategoryRequest;
+import com.biricik.ecommerce.business.responses.categoryResponses.CreateCategoryResponse;
+import com.biricik.ecommerce.business.responses.categoryResponses.GetAllCategoryResponse;
+import com.biricik.ecommerce.business.responses.categoryResponses.GetByIdCategoryResponse;
+
+public interface CategoryService {
+
+	public CreateCategoryResponse addCategory(CreateCategoryRequest createCategoryRequest) ;
+	
+	public List<GetAllCategoryResponse> getAll();
+
+	public GetByIdCategoryResponse getById(int categoryId);
+}

@@ -1,0 +1,13 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.biricik.ecommerce.model.Image;
+import com.biricik.ecommerce.model.Product;
+
+public interface ImageService {
+	
+	
+	public Image uploadImage(MultipartFile file,Product product);
+
+}

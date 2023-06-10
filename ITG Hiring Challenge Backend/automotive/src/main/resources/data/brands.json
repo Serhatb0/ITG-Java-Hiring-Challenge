@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"name": "Bosch",
+		"categories": [
+			{
+				"id": 1,
+				"name": "Motor Parçaları"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Continental",
+		"categories": [
+			{
+				"id": 2,
+				"name": "Şasi Parçaları"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "Delphi",
+		"categories": [
+			{
+				"id": 3,
+				"name": "Elektrik Parçaları"
+			}
+		]
+	}
+]

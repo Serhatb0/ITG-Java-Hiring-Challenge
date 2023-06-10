@@ -1,0 +1,48 @@
+package com.biricik.ecommerce.business.concretes;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.ecommerce.business.abstracts.CityService;
+import com.biricik.ecommerce.business.mappers.AddressMapper;
+import com.biricik.ecommerce.business.responses.addressResponses.FindByCountryIdCityResponse;
+import com.biricik.ecommerce.model.City;
+import com.biricik.ecommerce.repository.CityRepository;
+
+@Service
+public class CityManager implements CityService {
+
+	private final CityRepository cityRepository;
+	private final AddressMapper addressMapper;
+
+	public CityManager(CityRepository cityRepository, AddressMapper addressMapper) {
+		this.cityRepository = cityRepository;
+		this.addressMapper = addressMapper;
+	}
+	
+	
+
+	@Override
+	public List<FindByCountryIdCityResponse> findByCountryId(int countryId) {
+		
+		List<City> cities = cityRepository.findByCountryId(countryId);
+		
+		List<FindByCountryIdCityResponse> response = addressMapper.cityToFindByCountryIdCityResponse(cities);
+		
+		return response;
+		
+		
+		
+		
+	}
+
+
+
+	@Override
+	public City findById(int cityId) {
+	
+		return cityRepository.findById(cityId).get();
+	}
+
+}

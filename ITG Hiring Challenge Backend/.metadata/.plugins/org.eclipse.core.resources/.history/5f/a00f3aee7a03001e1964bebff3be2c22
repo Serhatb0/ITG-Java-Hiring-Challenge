@@ -1,0 +1,18 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import org.springframework.http.ResponseEntity;
+
+import com.biricik.ecommerce.business.requests.payment.PaymentRequest;
+import com.iyzipay.model.CheckoutForm;
+import com.iyzipay.model.CheckoutFormInitialize;
+
+public interface PaymentService {
+	
+	
+	public CheckoutFormInitialize checkout(PaymentRequest paymentRequest, String ip);
+
+	public  ResponseEntity<?>  retrieveCheckoutRequest(String token, String discountCode);
+	
+	
+
+}

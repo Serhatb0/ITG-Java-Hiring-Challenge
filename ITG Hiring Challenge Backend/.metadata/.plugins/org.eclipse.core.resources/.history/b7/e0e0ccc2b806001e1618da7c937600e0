@@ -1,0 +1,58 @@
+package com.biricik.automotive.business.concretes;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.CargoService;
+import com.biricik.automotive.business.abstracts.OrderService;
+import com.biricik.automotive.business.abstracts.ShoppingCartService;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Cargo;
+import com.biricik.automotive.model.CargoStatus;
+import com.biricik.automotive.model.Order;
+import com.biricik.automotive.model.ShoppingCart;
+
+@Service
+public class CargoManager implements CargoService {
+
+	
+	private final CargoService cargoService;
+	private final ShoppingCartService shoppingCartService;
+	private final OrderService orderService;
+	private final ModelMapperService modelMapperService;
+	
+		
+	public CargoManager(CargoService cargoService, ShoppingCartService shoppingCartService, OrderService orderService, ModelMapperService modelMapperService) {
+		this.cargoService = cargoService;
+		this.shoppingCartService = shoppingCartService;
+		this.orderService = orderService;
+		this.modelMapperService = modelMapperService;
+	}
+	
+	
+
+
+
+
+
+
+
+
+	@Override
+	public void createCargo(int shoppingCartId,int orderId) {
+		
+		ShoppingCart shoppingCart = shoppingCartService.findById(shoppingCartId);
+		Order order = orderService.findById(orderId);
+		
+		Cargo cargo = new Cargo();
+		
+		
+		cargo.setCargoStatus(CargoStatus.PREPARING);
+		cargo.setOrder(shoppingCart.getCustomer().getO);
+		
+	}
+
+	
+	
+	
+	
+}

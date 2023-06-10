@@ -1,0 +1,22 @@
+package com.biricik.automotive.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+
+public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartItem, Integer> {
+	
+
+//	@Query(value = "SELECT items.*, cart.* \n"
+//			+ "FROM SHOPPING_CART_ITEMS items \n"
+//			+ "INNER JOIN SHOPPING_CARTS cart ON items.SHOPPING_CART_ID = cart.id \n"
+//			+ "WHERE cart.CUSTOMER_ID = 1", nativeQuery = true)
+	List<ShoppingCartItem> findByShoppingCartCustomerId(int customerId);
+	
+	
+	
+	
+	
+}

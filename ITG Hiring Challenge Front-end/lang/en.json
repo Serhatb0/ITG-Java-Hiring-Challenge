@@ -1,0 +1,17 @@
+{
+  "home": "Home",
+  "shop": "Shop",
+  "contacts": "Contacts",
+  "login": "LOGİN",
+  "login-admin": "ADMİN LOGİN",
+  "product-add": "Product Add",
+  "signin": "SIGN IN",
+  "delete-cart-item": "Item Deleted",
+  "error": "An unexpected error has occurred",
+  "coupon-success": "Coupon Applied Successfully",
+  "payment-successful": "Payment Successful",
+  "cart-empty": "Basket cannot be empty",
+  "account-open": "Account unlocked Successfully",
+  "email-succes": "Email Successfully Sent",
+  "order": "My Order"
+}

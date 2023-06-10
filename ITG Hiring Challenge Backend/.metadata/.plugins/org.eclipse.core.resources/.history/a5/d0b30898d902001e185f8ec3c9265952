@@ -1,0 +1,14 @@
+package com.biricik.ecommerce.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.biricik.ecommerce.model.EmailConfirmationToken;
+
+public interface ConfirmationTokenRepository extends JpaRepository<EmailConfirmationToken, Integer> {
+
+	Optional<EmailConfirmationToken> findByConfirmationToken(String confirmationToken);
+	
+	
+}

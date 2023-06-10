@@ -1,0 +1,5 @@
+package com.biricik.automotive.business.responses.authResponses;
+
+public class GetAllLockedAccountsResponse {
+
+}

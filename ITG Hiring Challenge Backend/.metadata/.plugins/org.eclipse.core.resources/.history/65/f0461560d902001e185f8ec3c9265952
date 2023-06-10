@@ -1,0 +1,13 @@
+package com.biricik.automotive.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.biricik.ecommerce.model.Address;
+
+public interface AddressRepository extends JpaRepository<com.biricik.automotive.model.Address, Integer> {
+
+	List<Address> findByUserId(int customerId);
+
+}

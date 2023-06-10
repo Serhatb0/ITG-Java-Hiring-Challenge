@@ -1,0 +1,35 @@
+package com.biricik.automotive.model;
+
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Table(name = "countries")
+@Data
+@ToString
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+public class Country  extends ParentEntity{
+
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "iso_code")
+	private String isoCode;
+	
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "country")
+	private List<City> cities;
+}

@@ -1,0 +1,53 @@
+package com.biricik.automotive.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.BrandService;
+import com.biricik.automotive.business.requests.brandRequest.CreateBrandRquest;
+import com.biricik.automotive.business.responses.brandResponses.CreateBrandResponse;
+import com.biricik.automotive.business.responses.brandResponses.FindBrandByCategoryIdResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Brand;
+import com.biricik.automotive.repository.BrandRepository;
+import com.biricik.ecommerce.business.mappers.BrandMapper;
+
+@Service
+public class BrandManager implements BrandService {
+
+	private final BrandRepository brandRepository;
+	private final ModelMapperService modelMapperService;
+
+	public BrandManager(BrandRepository brandRepository, ModelMapperService modelMapperService) {
+		this.brandRepository = brandRepository;
+		this.modelMapperService = modelMapperService;
+
+	}
+
+	@Override
+	public List<FindBrandByCategoryIdResponse> findByCategoryId(int categoryId) {
+		List<Brand> brands = brandRepository.findByCategoriesId(categoryId);
+		return brands.stream()
+				.map(brand -> modelMapperService.forResponse().map(brand, FindBrandByCategoryIdResponse.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Brand findById(int brandId) {
+		return brandRepository.findById(brandId).get();
+	}
+
+	@Override
+	public CreateBrandResponse addBrand(CreateBrandRquest createBrandRequest) {
+
+		Brand brand = modelMapperService.forRequest().map(createBrandRequest, Brand.class);
+
+		CreateBrandResponse response = modelMapperService.forResponse().map(brand, CreateBrandResponse.class);
+
+		return response;
+	}
+
+}

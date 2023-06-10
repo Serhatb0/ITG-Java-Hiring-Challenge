@@ -1,0 +1,86 @@
+package com.biricik.automotive.controllers;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.biricik.automotive.business.abstracts.AddressService;
+import com.biricik.automotive.business.abstracts.CityService;
+import com.biricik.automotive.business.abstracts.CustomerService;
+import com.biricik.automotive.business.requests.addressRequest.CreateAddressRequest;
+import com.biricik.automotive.business.responses.addressResponses.CreateAddressResponse;
+import com.biricik.automotive.business.responses.addressResponses.FindByCustomerIdAddressResponse;
+import com.biricik.automotive.business.responses.addressResponses.FindByIdAddressResponse;
+import com.biricik.automotive.core.mappers.ModelMapperService;
+import com.biricik.automotive.model.Address;
+import com.biricik.automotive.model.City;
+import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.repository.AddressRepository;
+
+@Service
+public class AddressManager implements AddressService {
+
+	private final AddressRepository addressRepository;
+	private final ModelMapperService modelMapperService;
+	private final CustomerService customerService;
+	private final CityService cityService;
+
+	public AddressManager(AddressRepository addressRepository, CustomerService customerService, CityService cityService,
+			ModelMapperService modelMapperService) {
+		this.addressRepository = addressRepository;
+		this.modelMapperService = modelMapperService;
+		this.customerService = customerService;
+		this.cityService = cityService;
+	}
+
+	@Override
+	public CreateAddressResponse addAddress(CreateAddressRequest createAddressRequest) {
+
+		Customer customer = customerService.findById(createAddressRequest.getCustomerId());
+		City city = cityService.findById(createAddressRequest.getCityId());
+
+		Address address = modelMapperService.forRequest().map(createAddressRequest, Address.class);
+		address.setUser(customer);
+		address.setCity(city);
+
+		this.addressRepository.save(address);
+
+		CreateAddressResponse response = modelMapperService.forResponse().map(address, CreateAddressResponse.class);
+
+		response.setDistrictName(address.getCity().getDistricts().stream()
+				.filter(item -> item.getId() == createAddressRequest.getDistrictId()).findFirst().get().getName());
+
+		return response;
+
+	}
+
+	@Override
+	public List<FindByCustomerIdAddressResponse> findByCustomerId(int customerId) {
+
+		List<Address> addresses = addressRepository.findByUserId(customerId);
+
+		List<FindByCustomerIdAddressResponse> responses = addresses.stream()
+				.map(address -> modelMapperService.forResponse().map(address, FindByCustomerIdAddressResponse.class))
+				.collect(Collectors.toList());
+		return responses;
+
+	}
+
+	@Override
+	public FindByIdAddressResponse findById(int id) {
+
+		Address address = addressRepository.findById(id).get();
+
+		return modelMapperService.forResponse().map(address, FindByIdAddressResponse.class);
+
+	}
+
+	@Override
+	public void deleteAddress(int id) {
+
+		addressRepository.deleteById(id);
+
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.biricik.automotive.business.requests.authRequest;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RegisterRequest {
+
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String email;
+	private String password;
+//	private String role;
+}

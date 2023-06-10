@@ -1,0 +1,25 @@
+package com.biricik.ecommerce.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.ecommerce.business.requests.addressRequest.CreateAddressRequest;
+import com.biricik.ecommerce.business.responses.addressResponses.CreateAddressResponse;
+import com.biricik.ecommerce.business.responses.addressResponses.FindByCustomerIdAddressResponse;
+import com.biricik.ecommerce.business.responses.addressResponses.FindByIdAddressResponse;
+
+public interface AddressService {
+
+	CreateAddressResponse addAddress(CreateAddressRequest createAddressRequest);
+
+	List<FindByCustomerIdAddressResponse> findByCustomerId(int customerId);
+
+	FindByIdAddressResponse findById(int id);
+
+	void deleteAddress(int id);
+
+
+
+	
+
+	
+}

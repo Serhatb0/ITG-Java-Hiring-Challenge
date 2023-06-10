@@ -1,0 +1,15 @@
+package com.biricik.automotive.business.responses.creditCardResponse;
+
+public class CreateCreditCartResponse {
+
+	private int id;
+	
+	private String cardHoldername;
+
+	private String cardNumber;
+
+	private int expireMonth;
+
+	private int expireYear;
+
+}

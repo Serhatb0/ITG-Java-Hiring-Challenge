@@ -1,0 +1,15 @@
+package com.biricik.automotive.business.abstracts;
+
+import java.util.List;
+
+import com.biricik.automotive.business.requests.creditCardRequest.CreateCreditCartRequest;
+import com.biricik.automotive.business.responses.addressResponses.FindByCustomerIdAddressResponse;
+import com.biricik.automotive.business.responses.creditCardResponse.CreateCreditCartResponse;
+
+public interface CreditCardService {
+	
+	public CreateCreditCartResponse createCreditCart(CreateCreditCartRequest createCreditCartRequest);
+	
+	List<FindByCustomerIdAddressResponse> findByCustomerId(int customerId);
+
+}

@@ -1,0 +1,5 @@
+package com.biricik.automotive.business.requests.creditCardRequest;
+
+public class CreateCreditCartRequest {
+
+}

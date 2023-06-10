@@ -1,0 +1,42 @@
+package com.biricik.automotive.business.rules;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+import com.biricik.automotive.exception.BusinessExcepiton;
+import com.biricik.automotive.repository.UserRepository;
+import com.biricik.automotive.util.MessageProvider;
+import com.biricik.automotive.util.MessageStatus;
+
+@Component
+public class AuthRules {
+	@Autowired
+	private  MessageProvider messageProvider;
+	private final UserRepository userRepository;
+
+	
+	@Lazy
+	public AuthRules(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	
+	}
+
+	public void checkExistsUsername(String userName) {
+
+		if (userRepository.existsByUsername(userName)) {
+			throw new BusinessExcepiton("0003", messageProvider.getMessage("0003", MessageStatus.ERRORS),
+					HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	public void checkExistsEmail(String email) {
+
+		if (userRepository.existsByEmail(email)) {
+			throw new BusinessExcepiton("0004", messageProvider.getMessage("0004", MessageStatus.ERRORS),
+					HttpStatus.BAD_REQUEST);
+		}
+	}
+
+}
