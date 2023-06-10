@@ -9,7 +9,7 @@ Projede kullanılan branch yapısı aşağıdaki gibidir:
 - `master` branch'i hem backend hem de frontend kodlarını içerir.
 - `FrontEnd` branch'i sadece frontend kodlarını içerir.
 - `Backend` branch'i sadece backend kodlarını içerir.
-- `main` branch sadece projenin genel bilgilerini içeren README.md dosyasını içerir.
+
 
 
 ## Proje Özellikleri
