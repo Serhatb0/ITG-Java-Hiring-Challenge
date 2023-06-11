@@ -2,6 +2,10 @@
 
 Bu proje, bir otomotiv parça e-ticaret platformudur. Kullanıcılar ve yöneticilerin sisteme kaydolabileceği bir sistemdir.
 
+
+## Admin Girişi İçin
+- `Email: ` biricikserhat47@gmail.com
+- `Password: ` 123456
 ## Branch Yapısı
 
 Projede kullanılan branch yapısı aşağıdaki gibidir:
