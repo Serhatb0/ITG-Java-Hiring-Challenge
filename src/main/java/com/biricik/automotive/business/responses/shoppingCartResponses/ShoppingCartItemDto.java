@@ -1,6 +1,7 @@
 package com.biricik.automotive.business.responses.shoppingCartResponses;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,8 @@ public class ShoppingCartItemDto {
 	public BigDecimal price;
 	public BigDecimal totalPrice;
 	public int quantity;
+	
+	List<String> urls;
 
 
 }
