@@ -17,7 +17,7 @@ const ShoppingCartItem = ({
             <Image
               width={90}
               height={90}
-              src={"/images/product/product-10.jpg"}
+              src={shoppingCart?.urls[0]}
               alt="shoppingcart"
             />
           </div>
