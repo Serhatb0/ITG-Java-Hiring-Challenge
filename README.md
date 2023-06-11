@@ -84,5 +84,20 @@ Proje, Iyzico ödeme yöntemini entegre etmek için aşağıdaki teknolojileri k
 Ödeme işlemleri için Iyzico API'sini kullanarak geliştirme ortamında entegrasyonu gerçekleştirilmiştir. Bu sayede kullanıcılar, ürün satın alırken güvenli bir şekilde ödeme yapabilmektedir.
 
 
+![screen01](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/53bd89f8-5eaf-4991-a730-db0c027f9fb9)
+![screen13](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/e14a3403-29f6-4b36-8342-299aa48cc1dd)
+![screen02](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/f766e9a3-8a57-4520-b308-eca0c27b92ad)
+![screen14](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/d17e437a-1663-4c7f-b84c-e16d48905403)
+![screen03](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/e339dd50-73de-4995-8f7e-667ffc2b7b8d)
+![screen15](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/11f1a4eb-cd68-4453-a6cd-f91a12f297d1)
+![screen04](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/f7c8042e-6e27-4f02-a8a5-058229a1be3c)
+![screen16](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/3968d09b-63c3-4150-a7df-46a02def26ae)
+![screen05](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/ce1b43f5-2a12-4cb6-a0b9-5cf1c8776f93)
+![screen17](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/fedca379-ff16-407f-a81f-2f3c8bb3fe13)
+![screen06](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/13a7551f-f1cf-441a-8db6-4c7a3592c3b0)
+![screen18](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/e0066773-c9d5-4400-9280-eee7fa7d7e02)
+![screen07](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/d84278ef-763c-40f3-9b2a-7bab16b011b5)
+![screen08](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/3c887d83-3696-412a-9d9d-3908eaa324e9)
+![screen09](https://github.com/Serhatb0/ITG-Java-Hiring-Challenge/assets/77425377/0d126178-6c8a-421d-8565-c3b28f51e009)
 
 
