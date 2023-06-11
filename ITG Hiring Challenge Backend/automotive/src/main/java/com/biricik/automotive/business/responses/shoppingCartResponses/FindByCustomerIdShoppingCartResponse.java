@@ -8,19 +8,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
+
 @Builder
 @NoArgsConstructor
-public class ShoppingCartItemDto {
+@AllArgsConstructor
+@Data
+public class FindByCustomerIdShoppingCartResponse {
 	
+
 	private int id;
-	public String productName;
-	public BigDecimal price;
-	public BigDecimal totalPrice;
-	public int quantity;
-	
-	List<String> urls;
+	private BigDecimal totalAmount;
+	private BigDecimal discountedTotalAmount;
+
+	List<ShoppingCartItemDto> shoppingCartItemDtos;
 
 
 }
