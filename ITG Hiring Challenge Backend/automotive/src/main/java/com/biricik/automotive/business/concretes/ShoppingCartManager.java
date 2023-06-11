@@ -23,6 +23,7 @@ import com.biricik.automotive.business.rules.CouponRules;
 import com.biricik.automotive.core.mappers.ModelMapperService;
 import com.biricik.automotive.model.Coupon;
 import com.biricik.automotive.model.Customer;
+import com.biricik.automotive.model.Image;
 import com.biricik.automotive.model.Product;
 import com.biricik.automotive.model.ShoppingCart;
 import com.biricik.automotive.model.ShoppingCartItem;
@@ -209,10 +210,23 @@ public class ShoppingCartManager implements ShoppingCartService {
 			return new ArrayList<>();
 		}
 		
-		List<ShoppingCartItemDto> shoppingCartItemDtos = shoppingCartItems.stream().map(item -> modelMapperService.forResponse()
-				.map(item, ShoppingCartItemDto.class)
-				).collect(Collectors.toList());
+		 List<ShoppingCartItemDto> shoppingCartItemDtos = shoppingCartItems.stream()
+		            .map(item -> {
+		                ShoppingCartItemDto dto = modelMapperService.forResponse().map(item, ShoppingCartItemDto.class);
 
+		                Product product = item.getProduct();
+		                if (product != null) {
+		                    List<String> urls = product.getImages().stream()
+		                            .map(Image::getUrl)
+		                            .collect(Collectors.toList());
+		                    dto.setUrls(urls);
+		                }
+
+		                return dto;
+		            })
+		            .collect(Collectors.toList());
+		
+		
 		if (shoppingCartItemDtos != null) {
 			shoppingCartItemDtos.stream().forEach(
 					item -> item.setTotalPrice(item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()))));
