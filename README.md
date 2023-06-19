@@ -26,6 +26,7 @@ Projede kullanılan branch yapısı aşağıdaki gibidir:
 - Kullanıcılar, dil seçeneğini Türkçe veya İngilizce olarak değiştirebilirler.
 - Kullanıcılar, hatalı girişlerde kilitlenme durumuyla karşılaşabilir. Bu durumu sadece yöneticiler kaldırabilir.
 - Yöneticiler, sisteme yeni ürünler ekleyebilirler.
+- Yöneticiler, kilitli hesabları açabilecektir.
 
 
 
